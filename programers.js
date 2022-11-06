@@ -28,6 +28,30 @@ function solution(array) {
   return map.length === 1 || map[0][1] > map[1][1] ? m[0][0] : -1
 }
 
+function solution(array) {
+  let answer = -1
+  let map = new Map;
+  for (let x of array) {
+    map.set(x, (map.get(x) || 0) + 1)
+  }
+  
+  let max = Number.MIN_SAFE_INTEGER;
+  let val = []
+  for ([k, v] of map) {
+    if (v > max) {
+      max = v
+    }
+    val.push(k)
+    // console.log(val)
+    if (val.length > 1) {
+      return answer
+    } else {
+      return answer = k
+    }
+  }
+  return answer
+}
+
 console.log(solution([1, 2, 3, 3, 3, 4]))
 console.log(solution([1, 1, 2, 2]))
 console.log(solution([1]))
