@@ -1,70 +1,63 @@
-// function solution(array) {
-//   let answer = 0;
-//   array = array.sort();
-//   for (let i = 0; i < array.length / 2; i += 1) {
-//       answer = array[i]
-//   }
-//   return answer;
-// }
-
-// function solution(array) {
-//   let answer = 0;
-//   array = array.sort((a, b) => a - b)
-//   answer =  array[Math.floor(array.length / 2)]
-//   return answer
-// }
-
-// console.log(solution([1, 2, 3, 4, 5]))
-// console.log(solution([-1, -2, -3, -4, -5]))
-// console.log(solution([-10, -24, -3, -4, -5, 5, 10]))
-
-function solution(array) {
-  let answer = -1
-  let map = new Map;
-  for (let x of array) {
-    map.set(x, (map.get(x) || 0) + 1)
-  }
-  map = [...map].sort((a, b) => b[1] - a[1])
-  return map.length === 1 || map[0][1] > map[1][1] ? m[0][0] : -1
-}
-
-function solution(array) {
-  let answer = -1
-  let map = new Map;
-  for (let x of array) {
-    map.set(x, (map.get(x) || 0) + 1)
-  }
-  
-  let max = Number.MIN_SAFE_INTEGER;
-  let val = []
-  for ([k, v] of map) {
-    if (v > max) {
-      max = v
-    }
-    val.push(k)
-    // console.log(val)
-    if (val.length > 1) {
-      return answer
-    } else {
-      return answer = k
-    }
-  }
-  return answer
-}
-
-console.log(solution([1, 2, 3, 3, 3, 4]))
-console.log(solution([1, 1, 2, 2]))
-console.log(solution([1]))
+// 피자 나눠 먹기 1
 
 // function solution(n) {
-//   let answer = [];
-//   for (let i = 1; i <= n; i += 1) {
-//     if (i % 2 === 1) {
-//       answer.push(i)
-//     }
+//   let answer = 0;
+//   if (n % 7 === 0) {
+//     answer = n / 7
+//   } else {
+//     answer = parseInt(n / 7 + 1)
 //   }
 //   return answer;
 // }
 
-// console.log(solution(10))
+// console.log(solution(7))
+// console.log(solution(1))
 // console.log(solution(15))
+
+// 피자 나눠 먹기 2
+// function solution(n) {
+//   let answer = 0;
+//   if (n % 6 === 0) {
+//     answer = n / 6
+//   } else if (n % 2 === 0) {
+//     answer = n / 2
+//   } else if (n % 3 === 0) {
+//     answer = n / 3
+//   } else {
+//     answer = n
+//   }
+//   return answer;
+// }
+
+// console.log(solution(6))
+// console.log(solution(10))
+// console.log(solution(4))
+// console.log(solution(25))
+
+// 피자 나눠 먹기 3
+// function solution(slice, n) {
+//   let answer = 0;
+//   if (n % slice === 0) {
+//     answer = n / slice
+//   } else {
+//     answer = parseInt(n / slice + 1)
+//   }
+//   return answer;
+// }
+
+// console.log(solution(7, 10))
+// console.log(solution(4, 12))
+
+// 배열의 평균값
+function solution(numbers) {
+  let answer = 0;
+  let sum = 0;
+  for (let i = 0; i < numbers.length; i += 1) {
+    sum += numbers[i]
+  }
+  answer = sum / numbers.length
+  return answer;
+}
+
+ console.log(solution([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]))
+ console.log(solution([89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99]))
