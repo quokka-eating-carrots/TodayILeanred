@@ -19,8 +19,50 @@
 
     foo()
   </script> -->
+  <style>
+    /* id 속성을 갖는 span 요소에 스타일 지정 */
+    span[id] {
+      color: skyblue;
+    }
+
+    /* href 속성이 https://example.com 인 a 요소에 스타일 지정 */
+    a[href="https://example.com"] {
+      color: red;
+    }
+
+    /* 클래스로 class1을 갖는 span 요소 선택*/
+    span[class~="class1"] {
+      color: blue;
+    }
+
+    /* id 중 hi 또는 hi- 형태를 갖는 span 요소 선택*/
+    span[id|="hi"] {
+      color: darkblue;
+    }
+
+    /* id의 접두사가 test인 span 요소 선택*/
+    span[id^="test"] {
+      color: cadetblue;
+    }
+
+    /* id의 접미사가 test인 span 요소 선택*/
+    span[id$="test"] {
+      color: rebeccapurple;
+    }
+
+    /* id에 javascript가 포함된 span 요소 선택*/
+    span[id*="javascript"] {
+      color: teal;
+    }
+  </style>
 </head>
 <body>
-  
+  <span id = "id1">span[id]</span>
+  <a href = "https://example.com">a[href="https://example.com"]</a>
+  <span class = "class1 class2">span[class~="class1"]</span>
+  <span id = "hi-1">span[id|="hi"]</span>
+  <span id = "test-1">span[id^="test"]</span>
+  <span id = "id-test">span[id$="test"]</span>
+  <span id = "id-javascript">span[id*="javascript"]</span>
 </body>
 </html>

@@ -1,63 +1,54 @@
-// 피자 나눠 먹기 1
+// 나이 출력
+// function solution(age) {
+//   var answer = 0;
+//   answer = 2022 - age + 1
+//   return answer;
+// }
 
-// function solution(n) {
+// console.log(solution(40))
+// console.log(solution(23))
+
+// 각도기
+// function solution(angle) {
 //   let answer = 0;
-//   if (n % 7 === 0) {
-//     answer = n / 7
-//   } else {
-//     answer = parseInt(n / 7 + 1)
+//   if (0 < angle && angle < 90) {
+//     answer = 1
+//   } else if (angle === 90) {
+//     answer = 2
+//   } else if (90 < angle && angle < 180) {
+//     answer = 3
+//   } else if (angle === 180) {
+//     answer = 4
 //   }
 //   return answer;
 // }
 
-// console.log(solution(7))
-// console.log(solution(1))
-// console.log(solution(15))
+// console.log(solution(70))
+// console.log(solution(91))
+// console.log(solution(180))
 
-// 피자 나눠 먹기 2
+// 짝수의 합
 // function solution(n) {
 //   let answer = 0;
-//   if (n % 6 === 0) {
-//     answer = n / 6
-//   } else if (n % 2 === 0) {
-//     answer = n / 2
-//   } else if (n % 3 === 0) {
-//     answer = n / 3
-//   } else {
-//     answer = n
+//   for (let i = 0; i <= n; i += 2) {
+//     answer += i
 //   }
 //   return answer;
 // }
 
-// console.log(solution(6))
 // console.log(solution(10))
 // console.log(solution(4))
-// console.log(solution(25))
 
-// 피자 나눠 먹기 3
-// function solution(slice, n) {
-//   let answer = 0;
-//   if (n % slice === 0) {
-//     answer = n / slice
-//   } else {
-//     answer = parseInt(n / slice + 1)
-//   }
-//   return answer;
-// }
-
-// console.log(solution(7, 10))
-// console.log(solution(4, 12))
-
-// 배열의 평균값
-function solution(numbers) {
+// 양꼬치
+function solution(n, k) {
   let answer = 0;
-  let sum = 0;
-  for (let i = 0; i < numbers.length; i += 1) {
-    sum += numbers[i]
+  let drink = 0;
+  if (n / 10 >= 1) {
+    drink = parseInt(n / 10) * 2000
   }
-  answer = sum / numbers.length
+  answer = (n * 12000) + (k * 2000) - drink
   return answer;
 }
 
- console.log(solution([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]))
- console.log(solution([89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99]))
+console.log(solution(10, 3))
+console.log(solution(64, 6))
