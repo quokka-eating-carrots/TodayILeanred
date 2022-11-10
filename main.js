@@ -1,57 +1,51 @@
-//머쓱이보다 키가 큰 사람
-// function solution(array, height) {
-//   let answer = 0;
-//   for (let x of array) {
-//     if (x > height) {
-//       answer += 1
-//     }
-//   }
-//     return answer;
-// }
-
-// console.log(solution([149, 180, 192, 170], 167))
-// console.log(solution([180, 120, 140], 190))
-
-//중복된 숫자 개수
-// function solution(array, n) {
-//   let answer = 0;
-//   for (let x of array) {
-//     if (x === n) {
-//       answer += 1
-//     }
-//   }
+// 문자열 뒤집기
+// function solution(my_string) {
+//   let answer = '';
+//   answer = my_string.split('').reverse().join('')
 //   return answer;
 // }
 
-// console.log(solution([1, 1, 2, 3, 4, 5], 1))
-// console.log(solution([0, 2, 3, 4], 1))
+// console.log(solution('jaron'))
+// console.log(solution('bread'))
 
-// 짝수 홀수 개수
-// function solution(num_list) {
+// 아이스 아메리카노
+// function solution(money) {
 //   let answer = [];
-//   let odd = 0
-//   let even = 0;
-//   for (let x of num_list) {
-//     if (x % 2 === 0) {
-//       even += 1
-//     } else {
-//       odd += 1
+//   let cnt = 0
+//   let charge = 0
+//   cnt = parseInt(money / 5500)
+//   charge = money - (5500 * cnt)
+//   answer.push(cnt, charge)
+//   return answer;
+// }
+
+// console.log(solution(5500))
+// console.log(solution(15000))
+
+// 최댓값 만들기 (1)
+// function solution(numbers) {
+//   let answer = 0;
+//   let max = Number.MIN_SAFE_INTEGER
+//   for (let i = 0; i < numbers.length; i += 1) {
+//     for (let j = 0; j < numbers.length; j += 1) {
+//       if (i !== j && numbers[i] * numbers[j] > max) {
+//         max = numbers[i] * numbers[j]
+//       }
 //     }
 //   }
-//   answer.push(even, odd)
+//   answer = max
 //   return answer;
 // }
 
 // console.log(solution([1, 2, 3, 4, 5]))
-// console.log(solution([1, 3, 5, 7]))
+// console.log(solution([0, 31, 24, 10, 1, 9]))
 
-// 배열 뒤집기
-// function solution(num_list) {
-//   let answer = [];
-//   answer = num_list.reverse()
-//   return answer;
-// }
+// 배열 자르기
+function solution(numbers, num1, num2) {
+  let answer = [];
+  answer = numbers.slice(num1, num2 + 1)
+  return answer;
+}
 
-// console.log(solution([1, 2, 3, 4, 5]))
-// console.log(solution([1, 1, 1, 1, 1, 2]))
-// console.log(solution([1, 0, 1, 1, 1, 3, 5]))
+console.log(solution([1, 2, 3, 4, 5], 1, 3))
+console.log(solution([1, 3, 5], 1, 2))
