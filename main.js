@@ -1,51 +1,60 @@
-// 배열 원소의 길이
-// function solution(strlist) {
-//   let answer = [];
-//   for (let x of strlist) {
-//     answer.push(x.length)
-//   }
-//   return answer;
-// }
-
-// console.log(solution(["We", "are", "the", "world!"]))
-// console.log(solution(["I", "Love", "Programmers."]))
-
-// 점의 위치 구하기
-// function solution(dot) {
-//   let answer = 0;
-//   if (dot[0] > 0 && dot[1] > 0) {
-//     answer = 1
-//   } else if (dot[0] < 0 && dot[1] > 0) {
-//     answer = 2
-//   } else if (dot[0] < 0 && dot[1] < 0) {
-//     answer = 3
-//   } else if (dot[0] > 0 && dot[1] < 0) {
-//     answer = 4
-//   }
-//     return answer;
-// }
-
-// console.log(solution([2, 4]))
-// console.log(solution([-7, 9]))
-
-// 특정 문자 제거하기
-// function solution(my_string, letter) {
+// 문자 반복 출력하기
+// function solution(my_string, n) {
 //   let answer = '';
-//   answer = my_string.split(letter).join('')
+//   for (let x of my_string) {
+//     for (let i = 1; i <= n; i += 1) {
+//       answer += x
+//     }
+//   }
 //   return answer;
 // }
 
-// 정규표현식을 사용하기 어렵다. 그러므로 쪼갠 후 다시 붙여 줬음
+// console.log(solution('hello', 3))
 
-// console.log(solution('abcdef', 'f'))
-// console.log(solution('BCBdbe', 'B'))
+// 삼각형의 완성 조건(1)
+// function solution(sides) {
+//   let answer = 0;
+//   let max = 0;
+//   let sum = 0;
+//   max = Math.max(...sides)
+//   for (let x of sides) {
+//     sum += x
+//   }
+//   if (sum - max > max) {
+//     answer = 1
+//   } else answer = 2
+//   return answer;
+// }
 
-// 편지
-function solution(message) {
+// console.log(solution([1, 2, 3]))
+// console.log(solution([3, 6, 2]))
+// console.log(solution([199, 72, 222]))
+
+// 옷가게 할인 받기
+// function solution(price) {
+//   let answer = 0;
+//   if (price >= 100000 && price < 300000) {
+//     answer = parseInt(price * 0.95)
+//   } else if (price >= 300000 && price < 500000) {
+//     answer = parseInt(price * 0.9)
+//   } else if (price >= 500000) {
+//     answer = parseInt(price * 0.8)
+//   } else answer = parseInt(price)
+//   return answer;
+// }
+
+// console.log(solution(150000))
+// console.log(solution(580000))
+
+// 제곱수 판별하기
+function solution(n) {
   let answer = 0;
-  answer = message.length * 2
+  let sqrt = Math.sqrt(n);
+  if (Number.isInteger(sqrt) === true) {
+    answer = 1
+  } else answer = 2
   return answer;
 }
 
-console.log(solution('happy birthday!'))
-console.log(solution('I love you~'))
+console.log(solution(144))
+console.log(solution(976))
