@@ -1,52 +1,59 @@
-// 배열 유사도
-// function solution(s1, s2) {
+// 세균 증식
+// function solution(n, t) {
+//   let answer = n;
+//   for (let i = 0; i < t; i += 1) {
+//     answer = answer * 2
+//   }
+//   return answer;
+// }
+
+// console.log(solution(2, 10))
+// console.log(solution(7, 15))
+
+// 숨어 있는 숫자의 덧셈 (1)
+// function solution(my_string) {
 //   let answer = 0;
-//   for (let x of s1) {
-//     for (let y of s2) {
-//       if (x === y) {
-//         answer += 1
-//       }
+//   let nums = [];
+//   for (let x of my_string) {
+//     if (x.charCodeAt() > 48 && x.charCodeAt() < 58) {
+//       nums.push(x)
 //     }
 //   }
-//   return answer;
-// }
-
-// console.log(solution(['a', 'b', 'c'], ['com', 'b', 'd', 'p', 'c']))
-// console.log(solution(['n', 'omg'], ['m', 'dot']))
-
-// 순서쌍의 개수
-// function solution(n) {
-//   let answer = 0;
-//   for (let i = 0; i <= n; i += 1) {
-//     if (n % i === 0) answer += 1
-//   }
-//   return answer;
-// }
-
-// console.log(solution(20))
-// console.log(solution(100))
-
-// 자릿수 더하기
-// function solution(n) {
-//   let answer = 0;
-//   n = n.toString().split('')
-//   for (let x of n) {
+//   for (let x of nums) {
 //     answer += Number(x)
 //   }
 //   return answer;
 // }
 
-// console.log(solution(1234))
-// console.log(solution(930211))
+// console.log(solution('aAb1B2cC34oOp'))
+// console.log(solution('1a2b3c4d123'))
 
-// 문자열 안에 문자열
-function solution(str1, str2) {
-  let answer = 0;
-  if (str1.includes(str2)) {
-    answer = 1
-  } else answer = 2
+// 문자열 정렬하기 (1)
+// function solution(my_string) {
+//   let answer = [];
+//   for (let x of my_string) {
+//     if (x.charCodeAt() > 47 && x.charCodeAt() < 58) {
+//       answer.push(Number(x))
+//     }
+//   }
+//   answer.sort()
+//   return answer;
+// }
+
+// console.log(solution('hi12392'))
+// console.log(solution('p2o4i8gj2'))
+// console.log(solution('abcde0'))
+
+// 모음 제거
+function solution(my_string) {
+  let answer = '';
+  for (let x of my_string) {
+    if (x !== 'a' && x !== 'e' && x !== 'i' && x !== 'o' && x !== 'u') {
+      answer += x
+    }
+  }
   return answer;
 }
 
-console.log(solution('ab6CDE443fgh22iJKlmn1o', '6CD'))
-console.log(solution('ppprrrogrammers', 'pppp'))
+console.log(solution('bus'))
+console.log(solution('nice to meet you'))
