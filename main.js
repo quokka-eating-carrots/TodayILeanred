@@ -1,72 +1,76 @@
-// 중앙값 구하기
-// function solution(array) {
+// 개미 군단
+// function solution(hp) {
 //   let answer = 0;
-//   array.sort((a, b) => a - b)
-//   for (let i = 0; i < array.length / 2; i += 1) {
-//     answer = array[i]
-//   }
+//   const first = parseInt(hp / 5)
+//   const second = parseInt((hp - first * 5) / 3)
+//   const third = hp - first * 5 - second * 3
+//   answer = first + second + third
 //   return answer;
 // }
 
-// console.log(solution([1, 2, 7, 10, 11]))
-// console.log(solution([9, -1, 0]))
+// console.log(solution(23))
+// console.log(solution(24))
+// console.log(solution(999))
 
-// n의 배수 고르기
-// function solution(n, numlist) {
+// 약수 구하기
+// function solution(n) {
 //   let answer = [];
-//   for (let x of numlist) {
-//     if (x % n === 0) {
-//       answer.push(x)
+//   for (let i = 1; i <= n; i += 1) {
+//     if (n % i === 0) {
+//       answer.push(i)
 //     }
 //   }
+//     return answer;
+// }
+
+// console.log(solution(24))
+// console.log(solution(29))
+
+// 가장 큰 수 찾기
+// function solution(array) {
+//   let answer = [];
+//   let max = Number.MIN_SAFE_INTEGER
+//   for (let i = 0; i < array.length; i++) {
+//     if (array[i] > max) {
+//       max = array[i]
+//     }
+//   }
+//   answer.push(max, array.indexOf(max))
 //   return answer;
 // }
 
-// console.log(solution(3, [4, 5, 6, 7, 8, 9, 10, 11, 12]))
-// console.log(solution(5, [1, 9, 3, 10, 13, 15]))
-// console.log(solution(12, [2, 100, 120, 600, 12, 12]))
-
-// 직각삼각형 출력하기
-// const readline = require('readline');
-// const rl = readline.createInterface({
-//     input: process.stdin,
-//     output: process.stdout
-// });
-
-// let input = [];
-
-// rl.on('line', function (line) {
-//     input = line.split(' ');
-// }).on('close', function () {
-//     for(let i = 1; i <= +input[0]; i += 1) console.log('*'.repeat(i));
-// });
-
-// 대문자와 소문자
-// function solution(my_string) {
-//   let answer = '';
-//   for (let x of my_string) {
-//     if (x === x.toUpperCase()) {
-//       answer += x.toLowerCase()
-//     } else answer += x.toUpperCase()
+// 주사위의 개수
+// function solution(box, n) {
+//   let answer = 1;
+//   let tmp = []
+//   for (let x of box) {
+//     tmp.push(parseInt(x / n))
+//   }
+//   for (let x of tmp) {
+//     answer = answer * x
 //   }
 //   return answer;
 // }
 
-// console.log(solution('cccCCC'))
-// console.log(solution('abCdEfghIJ'))
+// console.log(solution([1, 1, 1], 1))
+// console.log(solution([10, 8, 6], 3))
 
-// 가위바위보
-function solution(rsp) {
+// 외계행성 나이
+function solution(age) {
   let answer = '';
-  for (let x of rsp) {
-    if (x === '2') {
-      answer += '0'
-    } else if (x === '0') {
-      answer += '5'
-    } else answer += '2'
+  answer = [...('' + age)].map(num => String.fromCharCode('a'.charCodeAt(0) +  +num)).join('')
+  return answer;
+}
+
+function solution(age) {
+  let answer = '';
+  const ageArr = String(age).split('')
+  for (let i = 0; i < ageArr.length; i += 1) {
+    answer += String.fromCharCode(Number(ageArr[i]) + 97)
   }
   return answer;
 }
 
-console.log(solution('2'))
-console.log(solution('205'))
+console.log(solution(23))
+console.log(solution(51))
+console.log(solution(100))
