@@ -1,76 +1,77 @@
-// 개미 군단
-// function solution(hp) {
+// 인덱스 바꾸기
+// function solution(my_string, num1, num2) {
+//   let answer = '';
+//   let letter = [];
+//   let str = [];
+//   for (let i = 0; i < my_string.length; i += 1) {
+//     if (i === num1 || i === num2) {
+//       str.push(my_string[i])
+//     }
+//   }
+//   for (let i = 0; i < my_string.length; i += 1) {
+//     if (i === num1) {
+//       answer += str[1]
+//     } else if (i === num2) {
+//       answer += str[0]
+//     } else {
+//       answer += my_string[i]
+//     }
+//   }
+//   return answer;
+// }
+
+// console.log(solution('hello', 1, 2))
+// console.log(solution('I love You', 3, 6))
+
+// 문자열 정렬하기 (2)
+// function solution(my_string) {
+//   let answer = '';
+//   let lowerCase = []
+//   for (let x of my_string) {
+//     lowerCase.push(x.toLowerCase())
+//   }
+//   let charCode = []
+//   for (let x of lowerCase) {
+//     charCode.push(x.charCodeAt())
+//   }
+//   charCode.sort((a, b) => a - b)
+//   for (let x of charCode) {
+//     answer += String.fromCharCode(x)
+//   }
+//   return answer;
+// }
+
+// console.log(solution('Bcad'))
+// console.log(solution('heLLo'))
+// console.log(solution('Python'))
+
+// 숫자 찾기
+// function solution(num, k) {
 //   let answer = 0;
-//   const first = parseInt(hp / 5)
-//   const second = parseInt((hp - first * 5) / 3)
-//   const third = hp - first * 5 - second * 3
-//   answer = first + second + third
-//   return answer;
-// }
-
-// console.log(solution(23))
-// console.log(solution(24))
-// console.log(solution(999))
-
-// 약수 구하기
-// function solution(n) {
-//   let answer = [];
-//   for (let i = 1; i <= n; i += 1) {
-//     if (n % i === 0) {
-//       answer.push(i)
-//     }
-//   }
-//     return answer;
-// }
-
-// console.log(solution(24))
-// console.log(solution(29))
-
-// 가장 큰 수 찾기
-// function solution(array) {
-//   let answer = [];
-//   let max = Number.MIN_SAFE_INTEGER
-//   for (let i = 0; i < array.length; i++) {
-//     if (array[i] > max) {
-//       max = array[i]
-//     }
-//   }
-//   answer.push(max, array.indexOf(max))
-//   return answer;
-// }
-
-// 주사위의 개수
-// function solution(box, n) {
-//   let answer = 1;
-//   let tmp = []
-//   for (let x of box) {
-//     tmp.push(parseInt(x / n))
-//   }
-//   for (let x of tmp) {
-//     answer = answer * x
+//   num = String(num)
+//   k = String(k)
+//   for (let i = 0; i < num.length; i += 1) {
+//     if (num[i] === k) {
+//       return answer = i + 1
+//     } else answer = -1
 //   }
 //   return answer;
 // }
 
-// console.log(solution([1, 1, 1], 1))
-// console.log(solution([10, 8, 6], 3))
+// console.log(solution(29183, 1))
+// console.log(solution(232443, 4))
+// console.log(solution(123456, 7))
 
-// 외계행성 나이
-function solution(age) {
+// 암호 해독
+function solution(cipher, code) {
   let answer = '';
-  answer = [...('' + age)].map(num => String.fromCharCode('a'.charCodeAt(0) +  +num)).join('')
-  return answer;
-}
-
-function solution(age) {
-  let answer = '';
-  const ageArr = String(age).split('')
-  for (let i = 0; i < ageArr.length; i += 1) {
-    answer += String.fromCharCode(Number(ageArr[i]) + 97)
+  for (let i = 0; i < cipher.length; i += 1) {
+    if ((i + 1) % code === 0) {
+      answer += cipher[i]
+    }
   }
   return answer;
 }
 
-console.log(solution(23))
-console.log(solution(51))
-console.log(solution(100))
+console.log(solution('dfjardstddetckdaccccdegk', 4))
+console.log(solution('pfqallllabwaoclk', 2))
