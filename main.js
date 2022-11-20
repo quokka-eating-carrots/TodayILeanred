@@ -1,87 +1,71 @@
-// 중복된 문자 제거
-// function solution(my_string) {
-//   let answer = '';
-//   const set = new Set(my_string)
-//   for (let x of set) {
-//     answer += x
-//   }
-//   return answer;
-// }
-
-// console.log(solution('people'))
-// console.log(solution('We are the world'))
-
-// 모스 부호(1)
-// function solution(letter) {
-//   const morse = { 
-//     '.-':'a',
-//     '-...':'b',
-//     '-.-.':'c',
-//     '-..':'d',
-//     '.':'e',
-//     '..-.':'f',
-//     '--.':'g',
-//     '....':'h',
-//     '..':'i',
-//     '.---':'j',
-//     '-.-':'k',
-//     '.-..':'l',
-//     '--':'m',
-//     '-.':'n',
-//     '---':'o',
-//     '.--.':'p',
-//     '--.-':'q',
-//     '.-.':'r',
-//     '...':'s',
-//     '-':'t',
-//     '..-':'u',
-//     '...-':'v',
-//     '.--':'w',
-//     '-..-':'x',
-//     '-.--':'y',
-//     '--..':'z'
-//   }
-//   let answer = '';
-//   letter = letter.split(' ')
-//   for (let x of letter) {
-//     for (let key in morse) {
-//       if (x === key) {
-//         answer += morse[key]
-//       }
-//     }
-//   }
-//   return answer;
-// }
-
-// console.log(solution('.... . .-.. .-.. ---'))
-// console.log(solution(".--. -.-- - .... --- -."))
-
-// 팩토리얼
-function solution(n) {
+// k의 개수
+function solution(i, j, k) {
   let answer = 0;
-  let cnt = 1
-  for (let i = 1; i <= 10; i += 1) {
-    cnt *= i
-    if (cnt <= n) {
-      answer = i
-    }
+  let nums = ''
+  for (let a = i; a <= j; a += 1) {
+    nums += (String(a))
+  }
+  for (let b = 0; b < nums.length; b += 1) {
+    if (nums[b].includes(k)) answer += 1
   }
   return answer;
 }
 
-console.log(solution(3628800))
-console.log(solution(7))
+console.log(solution(1, 13, 1))
+console.log(solution(10, 50, 5))
+console.log(solution(3, 10, 2))
 
-// A로 B 만들기
-// function solution(before, after) {
-//   let answer = 0;
-//   before = before.split('').sort().join('')
-//   after = after.split('').sort().join('')
-//   if (before === after) {
-//     answer = 1
-//   } else answer = 0
+// 2차원으로 만들기
+// function solution(num_list, n) {
+//   let answer = [];
+//   for (let i = 0; i < num_list.length; i += n) {
+//     let nums = []
+//     for (let j = 0; j < n; j += 1) {
+//       nums.push(num_list[i + j])
+//     }
+//     answer.push(nums)
+//   }
 //   return answer;
 // }
 
-// console.log(solution('olleh', 'hello'))
-// console.log(solution('allpe', 'apple'))
+// console.log(solution([1, 2, 3, 4, 5, 6, 7, 8], 2))
+// console.log(solution([100, 95, 2, 4, 5, 6, 18, 33, 948], 3))
+
+// 가까운 수
+// function solution(array, n) {
+//   let answer = 0;
+//   let tmp = []
+//   for (let x of array) {
+//     let diff = 0
+//     diff = Math.abs(n - x)
+//     tmp.push([diff, x])
+//   }
+//   tmp.sort((a, b) => {
+//     if (a[0] === b[0]) {
+//       return a[1] - b[1]
+//     } else {
+//       return a[0] - b[0]
+//     }
+//   })
+//   answer = tmp[0][1]
+//   return answer;
+// }
+
+// console.log(solution([3, 10, 28], 20))
+// console.log(solution([10, 11, 12], 13))
+
+// 7의 개수
+// function solution(array) {
+//   let answer = 0;
+//   let str = ''
+//   for (let x of array) {
+//     str += String(x)
+//   }
+//   for (let x of str) {
+//     if (x === '7') answer += 1
+//   }
+//   return answer;
+// }
+
+// console.log(solution([7, 77, 17]))
+// console.log(solution([10, 29]))
