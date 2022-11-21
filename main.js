@@ -1,71 +1,113 @@
-// k의 개수
-function solution(i, j, k) {
-  let answer = 0;
-  let nums = ''
-  for (let a = i; a <= j; a += 1) {
-    nums += (String(a))
-  }
-  for (let b = 0; b < nums.length; b += 1) {
-    if (nums[b].includes(k)) answer += 1
-  }
-  return answer;
+// 진료 순서 정하기
+// function solution(emergency) {
+//   var answer = [];
+//   let tmp = []
+//   let emergencyOrigin = []
+//   for (let i = 0; i < emergency.length; i += 1) {
+//     emergencyOrigin.push(emergency[i])
+//   }
+//   emergency.sort((a, b) => b - a)
+//   for (let i = 0; i < emergency.length; i += 1) {
+//     tmp.push([i + 1, emergency[i]])
+//   }
+//   for (let i = 0; i < emergency.length; i += 1) {
+//     for (let [a, b] of tmp) {
+//       if (emergencyOrigin[i] === b) {
+//         answer.push(a)
+//       }
+//     }
+//   }
+//   return answer;
+// }
+
+// console.log(solution([3, 76, 24]))
+// console.log(solution([1, 2, 3, 4, 5, 6, 7]))
+// console.log(solution([30, 10, 23, 6, 100]))
+
+// 한 번만 등장한 문자
+// function solution(s) {
+//   var answer = '';
+//   let map = new Map()
+//   for (let x of s) {
+//     map.set(x, (map.get(x) || 0) + 1)
+//   }
+//   for (let [k, v] of map) {
+//     if (v === 1) {
+//       answer += k
+//     }
+//   }
+//   answer = answer.split('').sort().join('')
+//   return answer;
+// }
+
+// console.log(solution('abcabcadc'))
+// console.log(solution('abdc'))
+// console.log(solution('hello'))
+
+// 이진수 더하기
+// function solution(bin1, bin2) {
+//   let answer = '';
+//   let firstNum = 0
+//   let secondNum = 0
+//   for (let i = bin1.length; i > 0; i -= 1) {
+//     if (bin1[bin1.length - i] === '1') {
+//       firstNum += (2 ** (i - 1))
+//     }
+//   }
+//   for (let i = bin2.length; i > 0; i -= 1) {
+//     if (bin2[bin2.length - i] === '1') {
+//       secondNum += (2 ** (i - 1))
+//     }
+//   }
+//   let sum = firstNum + secondNum
+//   let tmp = sum
+//   while (tmp > 0) {
+//     answer += String(tmp % 2)
+//     tmp = parseInt(tmp / 2)
+//   }
+//   answer = answer.split('').reverse().join('')
+//   return answer;
+// }
+
+// console.log(solution('10', '11'))
+// console.log(solution('1001', '1111'))
+
+// function solution(bin1, bin2) {
+//   return (parseInt(bin1, 2) + parseInt(bin2, 2)).toString(2)
+// }
+
+// 공 던지기
+// function solution(numbers, k) {
+//   let answer = 0;
+//   let num = []
+//   while (num.length < k) {
+//     for (let i = 0; i <= 2; i += 2) {
+//       num.push(numbers[i])
+//     }
+//     numbers.push(numbers.shift())
+//     numbers.push(numbers.shift())
+//   }
+//   for (let i = 0; i < num.length; i += 1) {
+//     if (num[i] === num[i + 1]) {
+//       num.splice(i, 1)
+//     }
+//   }
+
+//   answer = num[num.length - 1]
+//   return answer;
+// }
+
+console.log(solution([1, 2, 3, 4], 2))
+console.log(solution([1, 2, 3, 4, 5, 6], 5))
+console.log(solution([1, 2, 3], 3))
+
+function solution(numbers, k) {
+  return numbers[(k - 1) * 2 % numbers.length];
 }
 
-console.log(solution(1, 13, 1))
-console.log(solution(10, 50, 5))
-console.log(solution(3, 10, 2))
-
-// 2차원으로 만들기
-// function solution(num_list, n) {
-//   let answer = [];
-//   for (let i = 0; i < num_list.length; i += n) {
-//     let nums = []
-//     for (let j = 0; j < n; j += 1) {
-//       nums.push(num_list[i + j])
-//     }
-//     answer.push(nums)
-//   }
-//   return answer;
-// }
-
-// console.log(solution([1, 2, 3, 4, 5, 6, 7, 8], 2))
-// console.log(solution([100, 95, 2, 4, 5, 6, 18, 33, 948], 3))
-
-// 가까운 수
-// function solution(array, n) {
-//   let answer = 0;
-//   let tmp = []
-//   for (let x of array) {
-//     let diff = 0
-//     diff = Math.abs(n - x)
-//     tmp.push([diff, x])
-//   }
-//   tmp.sort((a, b) => {
-//     if (a[0] === b[0]) {
-//       return a[1] - b[1]
-//     } else {
-//       return a[0] - b[0]
-//     }
-//   })
-//   answer = tmp[0][1]
-//   return answer;
-// }
-
-// console.log(solution([3, 10, 28], 20))
-// console.log(solution([10, 11, 12], 13))
-
-// 7의 개수
-// function solution(array) {
-//   let answer = 0;
-//   let str = ''
-//   for (let x of array) {
-//     str += String(x)
-//   }
-//   for (let x of str) {
-//     if (x === '7') answer += 1
-//   }
-//   return answer;
-// }
-
-// console.log(solution([7, 77, 17]))
-// console.log(solution([10, 29]))
+function solution(numbers, k) {
+  const goNext = current => (current + 2) % numbers.length;
+  let current = 0;
+  for (let i = 0; i < k - 1; i++) current = goNext(current);
+  return numbers[current];
+}
