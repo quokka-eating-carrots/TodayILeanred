@@ -1,113 +1,132 @@
-// 진료 순서 정하기
-// function solution(emergency) {
-//   var answer = [];
-//   let tmp = []
-//   let emergencyOrigin = []
-//   for (let i = 0; i < emergency.length; i += 1) {
-//     emergencyOrigin.push(emergency[i])
-//   }
-//   emergency.sort((a, b) => b - a)
-//   for (let i = 0; i < emergency.length; i += 1) {
-//     tmp.push([i + 1, emergency[i]])
-//   }
-//   for (let i = 0; i < emergency.length; i += 1) {
-//     for (let [a, b] of tmp) {
-//       if (emergencyOrigin[i] === b) {
-//         answer.push(a)
+// 잘라서 배열로 저장하기
+// function solution(my_str, n) {
+//   let answer = [];
+//   let letter = '';
+//   while (my_str.length > 0) {
+//     for (let i = 0; i < n; i += 1) {
+//       if (my_str[i] !== undefined) {
+//         letter += my_str[i]
 //       }
 //     }
+//     answer.push(letter)
+//     my_str = my_str.slice(n)
+//     letter = ''
 //   }
 //   return answer;
 // }
 
-// console.log(solution([3, 76, 24]))
-// console.log(solution([1, 2, 3, 4, 5, 6, 7]))
-// console.log(solution([30, 10, 23, 6, 100]))
+// console.log(solution("abc1Addfggg4556b", 6))
+// console.log(solution('abcdef123', 3))
 
-// 한 번만 등장한 문자
-// function solution(s) {
-//   var answer = '';
-//   let map = new Map()
-//   for (let x of s) {
-//     map.set(x, (map.get(x) || 0) + 1)
+// 소인수분해
+// function solution(n) {
+//   let answer = [];
+//   let primeFactor = []
+//   for (let i = 2; i < Math.sqrt(n); i += 1) {
+//     if (n % i === 0) primeFactor.push(i)
 //   }
-//   for (let [k, v] of map) {
-//     if (v === 1) {
-//       answer += k
-//     }
+//   if (primeFactor.length === 0) {
+//     answer.push(n)
 //   }
-//   answer = answer.split('').sort().join('')
 //   return answer;
 // }
 
-// console.log(solution('abcabcadc'))
-// console.log(solution('abdc'))
-// console.log(solution('hello'))
-
-// 이진수 더하기
-// function solution(bin1, bin2) {
-//   let answer = '';
-//   let firstNum = 0
-//   let secondNum = 0
-//   for (let i = bin1.length; i > 0; i -= 1) {
-//     if (bin1[bin1.length - i] === '1') {
-//       firstNum += (2 ** (i - 1))
+// function solution(n) {
+//   let answer = [];
+//   let primeFactor = []
+//   for (let i = 2; i <= Math.sqrt(n); i += 1) {
+//     while(n % i === 0) {
+//       primeFactor.push(i)
+//       n /= i
 //     }
 //   }
-//   for (let i = bin2.length; i > 0; i -= 1) {
-//     if (bin2[bin2.length - i] === '1') {
-//       secondNum += (2 ** (i - 1))
-//     }
-//   }
-//   let sum = firstNum + secondNum
-//   let tmp = sum
-//   while (tmp > 0) {
-//     answer += String(tmp % 2)
-//     tmp = parseInt(tmp / 2)
-//   }
-//   answer = answer.split('').reverse().join('')
+//   if (n >= 2) primeFactor.push(n)
+//   answer = [...new Set(primeFactor)].sort((a, b) => a - b)
 //   return answer;
 // }
 
-// console.log(solution('10', '11'))
-// console.log(solution('1001', '1111'))
-
-// function solution(bin1, bin2) {
-//   return (parseInt(bin1, 2) + parseInt(bin2, 2)).toString(2)
+// function solution(n) {
+//   let answer = [];
+//   let d = 2
+//   let primeFactor = []
+//   while (d <= Math.sqrt(n)) {
+//     if (n % d !== 0) {
+//       d += 1
+//     } else if (n % d === 0) {
+//       primeFactor.push(d)
+//       d += 1
+//     }
+//   }
+//   if (primeFactor.length === 0) answer.push(n)
+//   d = 2
+//   while(d < Math.max(...primeFactor)) {
+//     for (let i = 0; i < primeFactor.length; i += 1) {
+//       if (primeFactor[i] % d === 0) answer.push[i]
+//       d += 1
+//     }
+//   }
+//   return answer
 // }
 
-// 공 던지기
-// function solution(numbers, k) {
+// console.log(solution(12))
+// console.log(solution(17))
+// console.log(solution(420))
+
+// 숨어 있는 숫자의 덧셈 (2)
+// function solution(my_string) {
 //   let answer = 0;
-//   let num = []
-//   while (num.length < k) {
-//     for (let i = 0; i <= 2; i += 2) {
-//       num.push(numbers[i])
-//     }
-//     numbers.push(numbers.shift())
-//     numbers.push(numbers.shift())
-//   }
-//   for (let i = 0; i < num.length; i += 1) {
-//     if (num[i] === num[i + 1]) {
-//       num.splice(i, 1)
+//   let nums = []
+//   for (let i = 0; i < my_string.length; i += 1) {
+//     if (48 < my_string[i].charCodeAt() && 58 > my_string[i].charCodeAt() ) {
+//       nums.push(my_string[i])
 //     }
 //   }
-
-//   answer = num[num.length - 1]
+//   console.log(nums)
 //   return answer;
 // }
 
-console.log(solution([1, 2, 3, 4], 2))
-console.log(solution([1, 2, 3, 4, 5, 6], 5))
-console.log(solution([1, 2, 3], 3))
+// function solution(my_string) {
+//   const nums = my_string.match(/[0-9]+/g);
+//   return nums ? nums.map(num => +num).reduce((a, c) => a + c, 0) : 0;
+// }
 
-function solution(numbers, k) {
-  return numbers[(k - 1) * 2 % numbers.length];
+// console.log(solution("aAb1B2cC34oOp"))
+// console.log(solution("1a2b3c4d123Z"))
+
+// 영어가 싫어요
+// function solution(numbers) {
+//   let answer = 0;
+//   let nums = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine']
+//   for (let i = 0; i < 10; i += 1) {
+//     let tmp = numbers.split(nums[i])
+//     numbers = tmp.join(i)
+//   }
+//   answer = Number(numbers)
+//   return answer;
+// }
+
+// console.log(solution('onetwothreefourfivesixseveneightnine'))
+// console.log(solution('onefourzerosixseven'))
+
+// 햄버거 만들기
+function solution(ingredient) {
+  let answer = 0;
+  let stack = []
+  for (let i = 0; i < ingredient.length; i += 1) {
+    stack.push(ingredient[i]);
+    if (stack.length < 4) continue;
+    if (stack[stack.length - 4] === 1
+      && stack[stack.length - 3] === 2
+      && stack[stack.length - 2] === 3
+      && stack[stack.length - 1] === 1) {
+        for (let j = 0; j < 4; j += 1) {
+          stack.pop();
+        }
+        answer += 1
+      }
+  }
+  return answer;
 }
 
-function solution(numbers, k) {
-  const goNext = current => (current + 2) % numbers.length;
-  let current = 0;
-  for (let i = 0; i < k - 1; i++) current = goNext(current);
-  return numbers[current];
-}
+console.log(solution([2, 1, 1, 2, 3, 1, 2, 3, 1]))
+console.log(solution([1, 3, 2, 1, 2, 1, 3, 1, 2]))
