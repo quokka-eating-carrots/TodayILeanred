@@ -1,132 +1,126 @@
-// 잘라서 배열로 저장하기
-// function solution(my_str, n) {
-//   let answer = [];
-//   let letter = '';
-//   while (my_str.length > 0) {
-//     for (let i = 0; i < n; i += 1) {
-//       if (my_str[i] !== undefined) {
-//         letter += my_str[i]
+// 캐릭터의 좌표
+// function solution(keyinput, board) {
+//   let answer = [0, 0];
+//   for (let x of keyinput) {
+//     if (x === 'left' && answer[0] !== -Math.floor(board[0] / 2)) {
+//       answer[0] -= 1
+//     } else if (x === 'right' && answer[0] !== Math.floor(board[0] / 2)) {
+//       answer[0] += 1
+//     } else if (x === 'up' && answer[1] !== Math.floor(board[1] / 2)) {
+//       answer[1] += 1
+//     } else if (x === 'down' && answer[1] !== -Math.floor(board[1] / 2)) {
+//       answer[1] -= 1
+//     }
+//   }
+//   return answer;
+// }
+
+// console.log(solution(["left", "right", "up", "right", "right"], [11, 11]))
+// console.log(solution(["down", "down", "down", "down", "down"], [7, 9]))
+
+// 삼각형의 완성조건 (2)
+// function solution(sides) {
+//   let answer = 0;
+//   sides.sort((a, b) => a - b)
+//   let lec = []
+//   for (let i = 1; i < (sides[0] + sides[1]); i += 1) {
+//     if (sides[0] + i > sides[1] && i <= sides[1]) {
+//       lec.push(i)
+//     } else if (sides[0] + sides[1] > i && sides[1] < i) {
+//       lec.push(i)
+//     }
+//   }
+//   return answer = lec.length;
+// }
+
+// console.log(solution([1, 2]))
+// console.log(solution([3, 6]))
+// console.log(solution([11, 7]))
+
+// 직사각형 넓이 구하기
+// function solution(dots) {
+//   let answer = 1;
+//   dots.sort((a, b) => a[1] - b[1])
+//   console.log(dots)
+//   answer *= (dots[2][0] - dots[0][0])
+//   answer *= (dots[2][1] - dots[0][1])
+//   return Math.abs(answer);
+// }
+
+// function solution(dots) {
+//   let answer = 0
+//   const xDots = dots.flatMap(([x, y]) => x)
+//   const yDots = dots.flatMap(([x, y]) => y)
+//   const width = Math.max(...xDots) - Math.min(...xDots)
+//   const height = Math.max(...yDots) - Math.min(...yDots)
+//   return answer = width * height
+// }
+
+// console.log(solution([[1, 1], [2, 1], [2, 2], [1, 2]]))
+// console.log(solution([[-1, -1], [1, 1], [1, -1], [-1, 1]]))
+// console.log(solution([[-2, -1], [-3, -1], [-2, -3], [-1, -3]]))
+// console.log(solution([[-4, 5], [2, 5], [-4, 3], [2, -3]]))
+
+// 유한소수 판별하기
+// function solution(a, b) {
+//   let answer = 1;
+//   for (let i = 2; i <= 5; i += 1) {
+//     if (b % i === 0) {
+//       if (i !== 2 && i !== 5 && i !== 4) {
+//         answer = 2
 //       }
 //     }
-//     answer.push(letter)
-//     my_str = my_str.slice(n)
-//     letter = ''
 //   }
 //   return answer;
 // }
 
-// console.log(solution("abc1Addfggg4556b", 6))
-// console.log(solution('abcdef123', 3))
-
-// 소인수분해
-// function solution(n) {
-//   let answer = [];
-//   let primeFactor = []
-//   for (let i = 2; i < Math.sqrt(n); i += 1) {
-//     if (n % i === 0) primeFactor.push(i)
-//   }
-//   if (primeFactor.length === 0) {
-//     answer.push(n)
-//   }
-//   return answer;
-// }
-
-// function solution(n) {
-//   let answer = [];
-//   let primeFactor = []
-//   for (let i = 2; i <= Math.sqrt(n); i += 1) {
-//     while(n % i === 0) {
-//       primeFactor.push(i)
-//       n /= i
-//     }
-//   }
-//   if (n >= 2) primeFactor.push(n)
-//   answer = [...new Set(primeFactor)].sort((a, b) => a - b)
-//   return answer;
-// }
-
-// function solution(n) {
-//   let answer = [];
-//   let d = 2
-//   let primeFactor = []
-//   while (d <= Math.sqrt(n)) {
-//     if (n % d !== 0) {
-//       d += 1
-//     } else if (n % d === 0) {
-//       primeFactor.push(d)
-//       d += 1
-//     }
-//   }
-//   if (primeFactor.length === 0) answer.push(n)
-//   d = 2
-//   while(d < Math.max(...primeFactor)) {
-//     for (let i = 0; i < primeFactor.length; i += 1) {
-//       if (primeFactor[i] % d === 0) answer.push[i]
-//       d += 1
-//     }
-//   }
-//   return answer
-// }
-
-// console.log(solution(12))
-// console.log(solution(17))
-// console.log(solution(420))
-
-// 숨어 있는 숫자의 덧셈 (2)
-// function solution(my_string) {
-//   let answer = 0;
-//   let nums = []
-//   for (let i = 0; i < my_string.length; i += 1) {
-//     if (48 < my_string[i].charCodeAt() && 58 > my_string[i].charCodeAt() ) {
-//       nums.push(my_string[i])
-//     }
-//   }
-//   console.log(nums)
-//   return answer;
-// }
-
-// function solution(my_string) {
-//   const nums = my_string.match(/[0-9]+/g);
-//   return nums ? nums.map(num => +num).reduce((a, c) => a + c, 0) : 0;
-// }
-
-// console.log(solution("aAb1B2cC34oOp"))
-// console.log(solution("1a2b3c4d123Z"))
-
-// 영어가 싫어요
-// function solution(numbers) {
-//   let answer = 0;
-//   let nums = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine']
-//   for (let i = 0; i < 10; i += 1) {
-//     let tmp = numbers.split(nums[i])
-//     numbers = tmp.join(i)
-//   }
-//   answer = Number(numbers)
-//   return answer;
-// }
-
-// console.log(solution('onetwothreefourfivesixseveneightnine'))
-// console.log(solution('onefourzerosixseven'))
-
-// 햄버거 만들기
-function solution(ingredient) {
-  let answer = 0;
-  let stack = []
-  for (let i = 0; i < ingredient.length; i += 1) {
-    stack.push(ingredient[i]);
-    if (stack.length < 4) continue;
-    if (stack[stack.length - 4] === 1
-      && stack[stack.length - 3] === 2
-      && stack[stack.length - 2] === 3
-      && stack[stack.length - 1] === 1) {
-        for (let j = 0; j < 4; j += 1) {
-          stack.pop();
-        }
-        answer += 1
+function makePrimes(n) {
+  const primes = Array.from({ length: n + 1 }, (v) => true)
+  primes.splice(0, 2, false, false)
+  for (let num = 2; num < Math.floor(Math.sqrt(n)) + 1; num++) {
+    if (primes[num]) {
+      for (let i = num * num; i < n + 1; i += num) {
+        primes[i] = false
       }
+    }
   }
-  return answer;
+  return primes
 }
 
-console.log(solution([2, 1, 1, 2, 3, 1, 2, 3, 1]))
-console.log(solution([1, 3, 2, 1, 2, 1, 3, 1, 2]))
+function makePrimeFactorization(n) {
+  const primes = makePrimes(n)
+  const primeNumbers = Array.from({ length: n + 1 }, (v, i) => i).filter((x) => primes[x])
+  const result = {}
+  for (const number of primeNumbers) {
+    if (n % number === 0) {
+      result[number] = 0
+    }
+    while (n % number === 0 && n > 1) {
+      result[number]++
+      n /= number
+    }
+    if (n === 1) break
+  }
+  return result
+}
+
+function solution(a, b) {
+  const numerator = makePrimeFactorization(a)
+  const denominator = makePrimeFactorization(b)
+
+  for (const [key, value] of Object.entries(numerator)) {
+    if (key in denominator) {
+      denominator[key] = Math.max(0, denominator[key] - value)
+    }
+  }
+
+  for (const [key, value] of Object.entries(denominator)) {
+    if (key === '2' || key === '5') continue
+    if (value > 0) return 2
+  }
+  return 1
+}
+
+console.log(solution(7, 20))
+console.log(solution(11, 22))
+console.log(solution(12, 21))

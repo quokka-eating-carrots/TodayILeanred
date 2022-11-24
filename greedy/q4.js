@@ -1,18 +1,18 @@
-// 이동 횟수
 function solution(nums) {
   let answer = 0
   nums.sort((a, b) => a - b)
-  let left = 0, right = nums.length
+  let left = 0
+  let right = nums.length - 1
   while(left <= right) {
-    if (nums[left] + nums[right] <= 5) {
+    if (nums[left] + nums[right] > 5) {
+      answer += 1
+      right -= 1
+    } else {
       answer += 1
       left += 1
       right -= 1
-    } else {
-      right -= 1
     }
   }
-  answer = nums.length - (answer * 2) + answer
   return answer
 }
 
