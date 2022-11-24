@@ -80,7 +80,9 @@
 function solution(spell, dic) {
   let answer = 0
   spell = spell.sort().join('')
+  console.log(spell)
   answer = dic.map(e => e.split('').sort().join('')).find(e => e === spell) !== undefined ? 1 : 2
+  console.log(dic.map(e => e.split('').sort().join('')))
   return answer
 }
 
