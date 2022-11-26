@@ -1,107 +1,140 @@
-// 문자열 밀기
-// function solution(A, B) {
-//   let answer = -1;
-//   let cnt = 0
-//   if (A === B) return answer = 0
-//   for (let i = 0; i < A.length; i += 1) {
-//     A = A.split('')
-//     A.unshift(A.pop())
-//     A = A.join('')
-//     cnt += 1
-//     if (A === B) {
-//       answer = cnt
+// 등수 매기기
+// function solution(score) {
+//   let answer = [];
+//   let average = [];
+//   for (let i = 0; i < score.length; i += 1) {
+//     average.push([i, (score[i][0] + score[i][1]) / 2])
+//   }
+//   average.sort((a, b) => b[1] - a[1])
+//   for (let i = 0; i < average.length; i += 1) {
+//     if ()
+//   }
+//   return answer;
+// }
+
+// function solution(score) {
+//   let answer = []
+//   for (let i = 0; i < score.length; i += 1) {
+//     answer.push(1)
+//   }
+//   for (let i = 0; i < score.length; i += 1) {
+//     for (let j = 0; j < score.length; j += 1) {
+//       if (score[i][0] + score[i][1] > score[j][0] + score[j][1]) {
+//         answer[j] += 1
+//       }
+//     }
+//   }
+//   return answer
+// }
+
+// console.log(solution([[80, 70], [90, 50], [40, 70], [50, 80]]))
+
+// 특이한 정렬 테케 3번?
+// function solution(numlist, n) {
+//   let answer = [];
+//   numlist.sort((a, b) => b - a)
+//   let diff = 0
+//   while (diff < Math.max(...numlist)) {
+//     for (let x of numlist) {
+//       if (Math.abs(n - x) === diff) {
+//         answer.push(x)
+//       }
+//     }
+//     diff += 1
+//   }
+//   return answer;
+// }
+
+// function solution(numlist, n) {
+//   return numlist.sort((a,b) => {
+//       const [aGab, bGab] = [Math.abs(a-n), Math.abs(b-n)]
+//       if(aGab === bGab) return b-a
+//       return aGab-bGab
+//   })
+// }
+
+// console.log(solution([1, 2, 3, 4, 5], 4))
+// console.log(solution([10000, 20, 36, 47, 40, 6, 10, 7000], 30))
+
+// 저주의 숫자 3
+// function solution(n) {
+//   let answer = 0
+//   for (let i = 1; i <= n; i += 1) {
+//     answer += 1
+//     while(answer.toString().includes('3') || answer % 3 === 0) {
+//       answer += 1
 //     }
 //   }
 //   return answer;
 // }
 
-// console.log(solution('hello', 'ohell'))
-// console.log(solution('apple', 'elppa'))
+// console.log(solution(15))
+// console.log(solution(40))
 
-// 컨트롤 제트
-// function solution(s) {
-//   let answer = 0;
-//   s = s.split(' ')
-//   for (let i = 0; i < s.length; i += 1) {
-//     if (s[i] === 'Z') {
-//       if (i - 1 !== -1 && s[i - 1] !== 'Z') {
-//         answer -= Number(s[i - 1])
-//       }
-//     } else answer += Number(s[i])
-//   }
-//   return answer;
-// }
-
-// function solution(s) {
-//   let answer = 0;
-//   s = s.split(' ')
-//   let num = []
-//   for (let i = 0; i < s.length; i += 1) {
-//     if (s[i] === 'Z') {
-//       num.pop()
-//     } else num.push(Number(s[i]))
-//   }
-//   num.forEach(n => answer += n)
-//   return answer;
-// }
-// console.log(solution('1 2 Z 3'))
-// console.log(solution('10 20 30 40'))
-// console.log(solution('10 Z 20 Z 1'))
-// console.log(solution('Z Z 0 1'))
-// console.log(solution('1 2 3 Z Z'))
-
-// 로그인 성공
-// function solution(id_pw, db) {
+// 다항식 더하기
+// function solution(polynomial) {
 //   let answer = '';
-//   for (let i = 0; i < db.length; i += 1) {
-//     if (id_pw[0] === db[i][0] && id_pw[1] === db[i][1]) {
-//       return answer = 'login'
-//     } else if (id_pw[0] === db[i][0] && id_pw[1] !== db[i][1]) {
-//       answer = 'wrong pw'
-//     } else answer = 'fail'
+//   let xPlus = []
+//   let num = 0
+//   let xNum = 0
+//   polynomial = polynomial.split(' ')
+//   for (let x of polynomial) {
+//     if (x.includes('x')) {
+//       xPlus.push(x)
+//     } else if (x !== '+') num += Number(x)
 //   }
-//     return answer;
+//   for (let y of xPlus) {
+//     if (y.length > 1) {
+//       xNum += Number(y[0])
+//     } else xNum += 1
+//   }
+
+//   if (num === 0 && xNum === 0) {
+//     return answer = '0'
+//   } else if (xNum === 0) {
+//     return answer = `${num}`
+//   } else if (num === 0) {
+//     return answer = `${xNum}x`
+//   } else if (xNum >= 1) {
+//     return answer = `${xNum === 1 ? '' : xNum}x + ${num}`
+//   }
+//   return answer = `${xNum}x + ${num}`
+//   // if (num !== 0 && xNum !== 1) {
+//   //   answer = `${xNum}x + ${num}`
+//   // }
+//   // if (xNum === 1) {
+//   //   answer = `x + ${num}`
+//   // }
+//   // if (num === 0 && xNum === 0) {
+//   //   answer = '0'
+//   // }
+//   // if answer = `${xNum}x`
+//   // return answer;
 // }
 
-function solution(id_pw, db) {
-  let answer = '';
-  db.map((item, i) => {
-    if (id_pw[0] === item[0] && id_pw[1] === item[1]) {
-      answer = 'login'
-    } else if (id_pw[0] === item[0] && id_pw[1] !== item[1]) {
-      answer = 'wrong pw'
-    } else if (id_pw[0] !== item[0] && id_pw[1] !== item[1]) {
-      answer = 'fail'
-    }
-  })
-  return answer;
+function solution(p) {
+  // x의 항과 상수항을 더함
+  let [x, c] = p.split('+').reduce(([a, b], s) => {
+      if (s.includes('x')) {
+          return [a + Number(s.trim().replace('x','') || 1), b];
+      }
+      return [a, b + Number(s)];
+  }, [0, 0]);
+  console.log([x, c])
+
+  // 둘다 0이라면 0을 반환
+  if (!x && !c) return '0';
+  // x항이 0이라면 상수항을 문자열로 반환
+  if (!x) return c.toString();
+  // 이전에 return되지 않았다면 x가 있다는 소리이므로 1이라면 x, n이라면 nx의 값을 x에 입력
+  x = `${x == 1 ? '' : x}x`;
+  // 상수항이 없다면 x 반환
+  if (!c) return x;
+  // 외에는 x항과 상수항이 모두 있으므로 반환
+  return `${x} + ${c}`;
 }
 
-console.log(solution(["meosseugi", "1234"], [["rardss", "123"], ["yyoom", "1234"], ["meosseugi", "1234"]]))
-
-// 치킨 쿠폰
-// function solution(chicken) {
-//   let answer = 0;
-//   let cp = chicken
-//   let keep = 0
-//   while (cp > 0) {
-//     answer += cp / 10
-//     keep += cp % 10
-//     cp /= 10
-//   }
-//   return Math.floor(answer);
-// }
-
-// function solution(chicken) {
-//   let answer = 0
-//   let coupon = chicken
-//   while (coupon >= 10) {
-//     answer += Math.floor(coupon / 10)
-//     coupon = coupon % 10 + Math.floor(coupon / 10)
-//   }
-//   return answer
-// }
-
-// console.log(solution(100))
-// console.log(solution(1081))
-// console.log(solution(1999))
+console.log(solution('3x + 7 + x'))
+console.log(solution('x + x + x'))
+console.log(solution('x + 7 + 15'))
+console.log(solution('0'))
