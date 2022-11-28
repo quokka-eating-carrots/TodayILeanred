@@ -1,140 +1,91 @@
-// 등수 매기기
-// function solution(score) {
-//   let answer = [];
-//   let average = [];
-//   for (let i = 0; i < score.length; i += 1) {
-//     average.push([i, (score[i][0] + score[i][1]) / 2])
-//   }
-//   average.sort((a, b) => b[1] - a[1])
-//   for (let i = 0; i < average.length; i += 1) {
-//     if ()
-//   }
-//   return answer;
-// }
-
-// function solution(score) {
-//   let answer = []
-//   for (let i = 0; i < score.length; i += 1) {
-//     answer.push(1)
-//   }
-//   for (let i = 0; i < score.length; i += 1) {
-//     for (let j = 0; j < score.length; j += 1) {
-//       if (score[i][0] + score[i][1] > score[j][0] + score[j][1]) {
-//         answer[j] += 1
-//       }
+// 겹치는 선분의 길이
+// function solution(lines) {
+//   let answer = 0;
+//   let nums = []
+//   for (let i = 0; i < lines.length; i += 1) {
+//     for (let j = lines[i][0]; j < lines[i][1]; j += 1) {
+//       nums.push(j)
 //     }
 //   }
-//   return answer
-// }
-
-// console.log(solution([[80, 70], [90, 50], [40, 70], [50, 80]]))
-
-// 특이한 정렬 테케 3번?
-// function solution(numlist, n) {
-//   let answer = [];
-//   numlist.sort((a, b) => b - a)
-//   let diff = 0
-//   while (diff < Math.max(...numlist)) {
-//     for (let x of numlist) {
-//       if (Math.abs(n - x) === diff) {
-//         answer.push(x)
-//       }
-//     }
-//     diff += 1
+//   let map = new Map()
+//   for (let x of nums) {
+//     map.set(x, (map.get(x) || 0) + 1)
 //   }
-//   return answer;
-// }
-
-// function solution(numlist, n) {
-//   return numlist.sort((a,b) => {
-//       const [aGab, bGab] = [Math.abs(a-n), Math.abs(b-n)]
-//       if(aGab === bGab) return b-a
-//       return aGab-bGab
-//   })
-// }
-
-// console.log(solution([1, 2, 3, 4, 5], 4))
-// console.log(solution([10000, 20, 36, 47, 40, 6, 10, 7000], 30))
-
-// 저주의 숫자 3
-// function solution(n) {
-//   let answer = 0
-//   for (let i = 1; i <= n; i += 1) {
-//     answer += 1
-//     while(answer.toString().includes('3') || answer % 3 === 0) {
+//   for (let [k, v] of map) {
+//     if (v > 1) {
 //       answer += 1
 //     }
 //   }
 //   return answer;
 // }
 
-// console.log(solution(15))
-// console.log(solution(40))
+// console.log(solution([[0, 1], [2, 5], [3, 9]]))
+// console.log(solution([[-1, 1], [1, 3], [3, 9]]))
+// console.log(solution([[0, 5], [3, 9], [1, 10]]))
 
-// 다항식 더하기
-// function solution(polynomial) {
-//   let answer = '';
-//   let xPlus = []
-//   let num = 0
-//   let xNum = 0
-//   polynomial = polynomial.split(' ')
-//   for (let x of polynomial) {
-//     if (x.includes('x')) {
-//       xPlus.push(x)
-//     } else if (x !== '+') num += Number(x)
-//   }
-//   for (let y of xPlus) {
-//     if (y.length > 1) {
-//       xNum += Number(y[0])
-//     } else xNum += 1
+// 평행
+// function solution(dots) {
+//   let answer = 0;
+//   dots.sort((a, b) => a[0] - b[0])
+//   const first_x = dots[0][0]
+//   const first_y = dots[0][1]
+
+//   const second_x = dots[1][0]
+//   const second_y = dots[1][1]
+
+//   const third_x = dots[2][0]
+//   const third_y = dots[2][1]
+  
+//   const fourth_x = dots[3][0]
+//   const fourth_y = dots[3][1]
+
+//   // 두 번째 값과 평행
+//   if ((first_y - second_y) !== 0 && (third_y - fourth_y) !== 0) {
+//     if ((first_x - second_x) / (first_y - second_y) === (third_x - fourth_x) / (third_y - fourth_y)) {
+//       return answer = 1
+//     }
 //   }
 
-//   if (num === 0 && xNum === 0) {
-//     return answer = '0'
-//   } else if (xNum === 0) {
-//     return answer = `${num}`
-//   } else if (num === 0) {
-//     return answer = `${xNum}x`
-//   } else if (xNum >= 1) {
-//     return answer = `${xNum === 1 ? '' : xNum}x + ${num}`
+//   // 세 번째 값과 평행
+//   if ((first_y - third_y) !== 0 && (second_y - fourth_y) !== 0) {
+//     if ((first_x - third_x) / (first_y - third_y) === (second_x - fourth_x) / (second_y - fourth_y)) {
+//       return answer = 1
+//     }
 //   }
-//   return answer = `${xNum}x + ${num}`
-//   // if (num !== 0 && xNum !== 1) {
-//   //   answer = `${xNum}x + ${num}`
-//   // }
-//   // if (xNum === 1) {
-//   //   answer = `x + ${num}`
-//   // }
-//   // if (num === 0 && xNum === 0) {
-//   //   answer = '0'
-//   // }
-//   // if answer = `${xNum}x`
-//   // return answer;
+
+//   // 네 번째 값과 평행
+//   if ((first_y - fourth_y) !== 0 && (third_y - second_y) !== 0) {
+//     if ((first_x - fourth_x) / (first_y - fourth_y) === (third_x - second_x) / (third_y - second_y)) {
+//       return answer = 1
+//     }
+//   }
+//   return answer;
 // }
 
-function solution(p) {
-  // x의 항과 상수항을 더함
-  let [x, c] = p.split('+').reduce(([a, b], s) => {
-      if (s.includes('x')) {
-          return [a + Number(s.trim().replace('x','') || 1), b];
-      }
-      return [a, b + Number(s)];
-  }, [0, 0]);
-  console.log([x, c])
+// console.log(solution([[1, 4], [9, 2], [3, 8], [11, 6]]))
 
-  // 둘다 0이라면 0을 반환
-  if (!x && !c) return '0';
-  // x항이 0이라면 상수항을 문자열로 반환
-  if (!x) return c.toString();
-  // 이전에 return되지 않았다면 x가 있다는 소리이므로 1이라면 x, n이라면 nx의 값을 x에 입력
-  x = `${x == 1 ? '' : x}x`;
-  // 상수항이 없다면 x 반환
-  if (!c) return x;
-  // 외에는 x항과 상수항이 모두 있으므로 반환
-  return `${x} + ${c}`;
+// 옹알이 (1)
+// function solution(babbling) {
+//   let answer = 0;
+//   const speak = ["aya", "ye", "woo", "ma"]
+//   let word = []
+//   for (let x of babbling) {
+//     for (let y of speak) {
+//       word.push(x.split(y))
+//     }
+//   }
+//   console.log(word)
+//   return answer;
+// }
+
+function solution(babbling) {
+  var answer = 0;
+  for (var i = 0 ; i < babbling.length ; i++ ) {
+      if (babbling[i].replace("ye"," ").replace("aya"," ").replace("woo"," ").replace("ma"," ").trim() === "") {
+          answer = answer + 1 ;
+      }    
+  }
+  return answer;
 }
 
-console.log(solution('3x + 7 + x'))
-console.log(solution('x + x + x'))
-console.log(solution('x + 7 + 15'))
-console.log(solution('0'))
+console.log(solution(["aya", "yee", "u", "maa", "wyeoo"]))
