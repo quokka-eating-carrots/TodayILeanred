@@ -1,11 +1,20 @@
-const modalBtn = document.querySelector('.modal-btn')
-const modalOverlay = document.querySelector('.modal-overlay')
-const closeBtn = document.querySelector('.close-btn')
+// const btns = document.querySelectorAll('.question-btn')
+// btns.forEach((btn) => {
+//   btn.addEventListener('click', (e) => {
+//     const question = e.currentTarget.parentElement.parentElement
+//     question.classList.toggle('show-text')
+//   })
+// })
 
-modalBtn.addEventListener('click', () => {
-  modalOverlay.classList.add('open-modal')
-})
-
-closeBtn.addEventListener('click', () => {
-  modalOverlay.classList.remove('open-modal')
+const questions = document.querySelectorAll('.question')
+questions.forEach((question) => {
+  const btn = question.querySelector(".question-btn")
+  btn.addEventListener('click', () => {
+    questions.forEach((item) => {
+      if (item !== question) {
+        item.classList.remove('show-text')
+      }
+    })
+    question.classList.toggle('show-text')
+  })
 })
