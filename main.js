@@ -1,117 +1,91 @@
-// 다음에 올 숫자
-// function solution(common) {
+// 겹치는 선분의 길이
+// function solution(lines) {
 //   let answer = 0;
-//   if (common[1] - common[0] === common[2] - common[1]) {
-//     return answer = common[common.length - 1] + (common[1] - common[0])
+//   let nums = []
+//   for (let i = 0; i < lines.length; i += 1) {
+//     for (let j = lines[i][0]; j < lines[i][1]; j += 1) {
+//       nums.push(j)
+//     }
 //   }
-//   if (common[1] / common[0] === common[2] / common[1]) {
-//     return answer = common[common.length - 1] * (common[1] / common[0])
+//   let map = new Map()
+//   for (let x of nums) {
+//     map.set(x, (map.get(x) || 0) + 1)
 //   }
-//   return answer;
-// }
-
-// console.log(solution([1, 2, 3, 4]))
-// console.log(solution([2, 4, 8]))
-
-// OX 퀴즈
-// function solution(quiz) {
-//   let answer = [];
-//   let math = [];
-//   let result = 0
-//   for (let x of quiz) {
-//     math.push(x.split(' '))
-//   }
-//   for (let i = 0; i < math.length; i += 1) {
-//     for (let j = 0; j < math[i].length; j += 1) {
-//       if (math[i][j] === '+') {
-//         result = Number(math[i][0]) + Number(math[i][2])
-//         if (result === Number(math[i][4])) {
-//           answer.push("O")
-//         } else answer.push("X")
-//       } else if (math[i][j] === "-") {
-//         result = Number(math[i][0]) - Number(math[i][2])
-//         if (result === Number(math[i][4])) {
-//           answer.push("O")
-//         } else answer.push("X")
-//       }
+//   for (let [k, v] of map) {
+//     if (v > 1) {
+//       answer += 1
 //     }
 //   }
 //   return answer;
 // }
 
-// console.log(solution(["3 - 4 = -3", "5 + 6 = 11"]))
+// console.log(solution([[0, 1], [2, 5], [3, 9]]))
+// console.log(solution([[-1, 1], [1, 3], [3, 9]]))
+// console.log(solution([[0, 5], [3, 9], [1, 10]]))
 
-// 연속된 수의 합
-// function solution(num, total) {
-//   let answer = [];
-//   let sum = 0
-//   for (let i = 1; i <= total; i += 1) {
-//     for (let j = 1; j <= num; j += 1) {
-//       sum += i
+// 평행
+// function solution(dots) {
+//   let answer = 0;
+//   dots.sort((a, b) => a[0] - b[0])
+//   const first_x = dots[0][0]
+//   const first_y = dots[0][1]
+
+//   const second_x = dots[1][0]
+//   const second_y = dots[1][1]
+
+//   const third_x = dots[2][0]
+//   const third_y = dots[2][1]
+  
+//   const fourth_x = dots[3][0]
+//   const fourth_y = dots[3][1]
+
+//   // 두 번째 값과 평행
+//   if ((first_y - second_y) !== 0 && (third_y - fourth_y) !== 0) {
+//     if ((first_x - second_x) / (first_y - second_y) === (third_x - fourth_x) / (third_y - fourth_y)) {
+//       return answer = 1
 //     }
-//     if (sum === total) {
-//       answer.push(i)
+//   }
+
+//   // 세 번째 값과 평행
+//   if ((first_y - third_y) !== 0 && (second_y - fourth_y) !== 0) {
+//     if ((first_x - third_x) / (first_y - third_y) === (second_x - fourth_x) / (second_y - fourth_y)) {
+//       return answer = 1
+//     }
+//   }
+
+//   // 네 번째 값과 평행
+//   if ((first_y - fourth_y) !== 0 && (third_y - second_y) !== 0) {
+//     if ((first_x - fourth_x) / (first_y - fourth_y) === (third_x - second_x) / (third_y - second_y)) {
+//       return answer = 1
 //     }
 //   }
 //   return answer;
 // }
-function solution(num, total) {
-  let answer = []
-  let a = (2 * total / num + 1 - num) / 2
-  for (let i = 0; i < num; i += 1) {
-    answer.push(a + i)
+
+// console.log(solution([[1, 4], [9, 2], [3, 8], [11, 6]]))
+
+// 옹알이 (1)
+// function solution(babbling) {
+//   let answer = 0;
+//   const speak = ["aya", "ye", "woo", "ma"]
+//   let word = []
+//   for (let x of babbling) {
+//     for (let y of speak) {
+//       word.push(x.split(y))
+//     }
+//   }
+//   console.log(word)
+//   return answer;
+// }
+
+function solution(babbling) {
+  var answer = 0;
+  for (var i = 0 ; i < babbling.length ; i++ ) {
+      if (babbling[i].replace("ye"," ").replace("aya"," ").replace("woo"," ").replace("ma"," ").trim() === "") {
+          answer = answer + 1 ;
+      }    
   }
-  return answer
+  return answer;
 }
 
-console.log(solution(3, 12))
-
-// 안전지대
-// function solution(board) {
-//   let result = 0
-//   // 전체 순회
-//   for(let i = 0 ; i < board.length ; i ++) {
-//       for(let j = 0 ; j < board[i].length ; j ++) {
-//           // board[i][j]의 값이 1인경우 상하좌우 및 대각선 검사를 실행
-//           if(board[i][j] === 1) {
-//               // 상하 좌우를 2로 변경하되 이는 해당 칸이 0인 경우에만 해당 즉 폭탄은 건들지 않는다.
-//               // 맨 윗줄이 아닌 경우
-//               if(i !== 0 && board[i-1][j] !== 1) {
-//                   board[i-1][j] = 2    
-//               }
-//               // 맨 아랫줄이 아닌 경우
-//               if(i !== board.length-1 && board[i+1][j] !== 1) {
-//                   board[i+1][j] = 2
-//               }
-//               // 맨 왼쪽이 아닌 경우
-//               if(j !== 0 && board[i][j-1] !== 1) {
-//                   board[i][j-1] = 2
-//               }
-//               // 맨 오른쪽이 아닌 경우
-//               if(j !== board[i].length-1 && board[i][j+1] !== 1) {
-//                   board[i][j+1] = 2
-//               }
-//               // 맨 대각선 윗 왼쪽이 아닌 경우
-//               if(i !== 0 && j !== 0 && board[i-1][j-1] !== 1) {
-//                   board[i-1][j-1] = 2
-//               }
-//               // 맨 대각선 윗 오른쪽이 아닌 경우
-//               if(i !== 0 && j !== board[i].length-1 && board[i-1][j+1] !== 1) {
-//                   board[i-1][j+1] = 2
-//               }
-//               // 맨 대각선 아랫 왼쪽이 아닌 경우
-//               if(i !== board.length-1 && j !== 0 && board[i+1][j-1] !== 1) {
-//                   board[i+1][j-1] = 2
-//               }
-//               // 맨 대각선 아랫 오른쪽이 아닌 경우
-//               if(i !== board.length-1 && j !== board[i].length-1 && board[i+1][j+1] !== 1) {
-//                   board[i+1][j+1] = 2
-//               }
-//           }
-//       }
-//   }
-//   board.forEach(a => a.forEach(b => b === 0 ? result++ : null))
-//   return result
-// }
-
-// console.log(solution([[0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 1, 0, 0], [0, 0, 0, 0, 0]]))
+console.log(solution(["aya", "yee", "u", "maa", "wyeoo"]))
