@@ -1,20 +1,13 @@
-// const btns = document.querySelectorAll('.question-btn')
-// btns.forEach((btn) => {
-//   btn.addEventListener('click', (e) => {
-//     const question = e.currentTarget.parentElement.parentElement
-//     question.classList.toggle('show-text')
-//   })
-// })
+const str = `
+010-1234-5678
+thesecon@gmail.com
+Hello world!
+https://www.omdbapi.com/?apikey=7035c60c&s=frozen
+The quick brown fox jumps over the lazy dog.
+hello@naver.com
+http://localhost:1234
+동해물과 백두산이 마르고 닳도록
+abbcccddddeeeee
+`
 
-const questions = document.querySelectorAll('.question')
-questions.forEach((question) => {
-  const btn = question.querySelector(".question-btn")
-  btn.addEventListener('click', () => {
-    questions.forEach((item) => {
-      if (item !== question) {
-        item.classList.remove('show-text')
-      }
-    })
-    question.classList.toggle('show-text')
-  })
-})
+console.log(/the/gi.test(str))
