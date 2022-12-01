@@ -1,56 +1,56 @@
-// 자연수 뒤집어 배열로 만들기
-// function solution(n) {
+// x만큼 간격이 있는 n 개의 숫자
+// function solution(x, n) {
 //   let answer = [];
-//   n = String(n).split('').reverse()
-//   for (let x of n) {
-//     answer.push(+x)
+//   for (let i = 0; i < n; i += 1) {
+//     answer.push(x + (x * i))
 //   }
 //   return answer;
 // }
 
-// console.log(solution(12345))
+// console.log(solution(2, 5))
+// console.log(solution(4, 3))
+// console.log(solution(-4, 2))
 
-// 정수 제곱근 판별
+// 하샤드 수
+// function solution(x) {
+//   let answer = true;
+//   x = String(x)
+//   let sum = 0
+//   for (let i of x) {
+//     sum += +i
+//   }
+//   if (x % sum === 0) {
+//     return answer = true
+//   } else return answer = false
+//   return answer;
+// }
+
+// console.log(solution(10))
+// console.log(solution(12))
+// console.log(solution(11))
+// console.log(solution(13))
+
+// 정수 내림차순으로 배치하기
 // function solution(n) {
 //   let answer = 0;
-//   let sqrt = Math.sqrt(n)
-//   if (sqrt === parseInt(sqrt)) {
-//     return answer = (sqrt + 1) * (sqrt + 1)
-//   } else return answer = -1
+//   n = String(n).split('')
+//   n.sort((a, b) => b - a)
+//   answer = +(n.join(''))
 //   return answer;
 // }
 
-// console.log(solution(121))
-// console.log(solution(3))
+// console.log(solution(118372))
 
-// 문자열 내 p와 y의 개수
-// function solution(s) {
-//   let answer = true;
-//   let p = 0
-//   let y = 0
-//   for (let x of s) {
-//     if (x === "p" || x === "P") {
-//       p += 1
-//     } else if (x === "y" || x === "Y") {
-//       y += 1
-//     }
-//   }
-//   if (p !== y) {
-//     return answer = false
-//   }
-//   return answer;
-// }
-
-// console.log(solution("pPoooyY"))
-// console.log(solution("Pyy"))
-
-// 문자열을 정수로 바꾸기
-function solution(s) {
-  var answer = 0;
-  answer = +s
+// 나머지가 1이 되는 수 찾기
+function solution(n) {
+  let answer = 0;
+  for (let i = 1; i < n; i += 1) {
+    if (n % i === 1) {
+      return answer = i
+    }
+  }
   return answer;
 }
 
-console.log(solution("123"))
-console.log(solution("-123"))
-console.log(solution("+123"))
+console.log(solution(10))
+console.log(solution(12))
