@@ -1,63 +1,47 @@
-// 나누어 떨어지는 숫자 배열
-// function solution(arr, divisor) {
-//   let answer = [];
-//   for (let x of arr) {
-//     if (x % divisor === 0) {
-//       answer.push(x)
-//     }
-//   }
-//   if (answer.length === 0) {
-//     return answer = [-1]
-//   } else return answer.sort((a, b) => a - b)
-//   return answer
+// 가운데 글자 가져오기
+// function solution(s) {
+//   let answer = '';
+//   if (s.length % 2 === 0) {
+//     answer += s[(s.length / 2) - 1]
+//     answer += s[s.length / 2]
+//   } else answer += s[parseInt(s.length / 2)]
+//   return answer;
 // }
 
-// console.log(solution([5, 9, 7, 10], 5))
-// console.log(solution([2, 36, 1, 3], 1))
-// console.log(solution([3, 2, 6], 10))
+// console.log(solution('abcde'))
+// console.log(solution('qwer'))
 
-// 제일 작은 수 제거하기
-// function solution(arr) {
-//   var answer = [];
-//   let min = Math.min(...arr)
-//   for (let x of arr) {
-//     if (x !== min) {
-//       answer.push(x)
-//     }
-//   }
-//   if (answer.length === 0) {
-//     return answer = [-1]
+// 수박수박수박수박수박수?
+// function solution(n) {
+//   var answer = '';
+//   for (let i = 1; i <= n; i += 1) {
+//     if (i % 2 !== 0) {
+//       answer += '수'
+//     } else answer += '박'
 //   }
 //   return answer;
 // }
 
-// console.log(solution([4, 3, 2, 1]))
-// console.log(solution([10]))
+// console.log(solution(3))
+// console.log(solution(4))
 
-// 음양 더하기
-// function solution(absolutes, signs) {
-//   let answer = 0;
-//   for (let i = 0; i < absolutes.length; i += 1) {
-//     if (signs[i] === true) {
-//       answer += absolutes[i]
-//     } else answer -= absolutes[i]
+// 내적
+// function solution(a, b) {
+//   var answer = 0;
+//   for (let i = 0; i < a.length; i += 1) {
+//     answer += (a[i] * b[i])
 //   }
 //   return answer;
 // }
 
-// console.log(solution([4, 7, 12], [true, false, true]))
-// console.log(solution([1, 2, 3], [false, false, true]))
+// console.log(solution([1, 2, 3, 4], [-3, -1, 0, 2]))
+// console.log(solution([-1, 0, 1], [1, 0, -1]))
 
-// 없는 숫자 더하기
-function solution(numbers) {
-  var answer = 0;
-  for (let i = 0; i <= 9; i += 1) {
-    if (!numbers.includes(i)) {
-      answer += i
-    }
-  }
+// 문자열 내림차순으로 배치하기
+function solution(s) {
+  var answer = '';
+  answer = s.split('').sort().reverse().join('')
   return answer;
 }
 
-console.log(solution([1, 2, 3, 4, 6, 7, 8, 0]))
-console.log(solution([5, 8, 4, 0, 6, 7, 9]))
+console.log(solution("Zbcdefg"))
