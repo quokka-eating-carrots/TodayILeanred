@@ -1,94 +1,62 @@
-// 직사각형 별 찍기
-// process.stdin.setEncoding("utf8");
-// process.stdin.on("data", (data) => {
-//   const n = data.split(" ");
-//   const a = Number(n[0]),
-//     b = Number(n[1]);
-//   console.log(("*".repeat(a) + `\n`).repeat(b));
-// });
+// 3진법 뒤집기
+// function solution(n) {
+//   var answer = 0;
+//   answer = parseInt(n.toString(3).split('').reverse().join(''), 3)
+//   return answer;
+// }
 
-// 최대공약수와 최소공배수
-// function solution(n, m) {
-//   var answer = [];
-//   let bigNum = 0
-//   let smallNum = 0
-//   if (n > m) {
-//     bigNum = n
-//     smallNum = m
-//   } else {
-//     bigNum = m
-//     smallNum = n
-//   }
-//   let gcd = 0
-//   for (let i = 1; i <= bigNum; i += 1) {
-//     if (bigNum % i === 0 && smallNum % i === 0) {
-//       if (gcd < i) {
-//         gcd = i
-//       }
+// console.log(solution(45))
+// console.log(solution(125))
+
+// 예산
+// function solution(d, budget) {
+//   var answer = 0;
+//   d.sort((a, b) => a - b)
+//   let right = d.length
+//   let sum = 0
+//   while (right > 0) {
+//     for (let i = 0; i < right; i += 1) {
+//       sum += d[i]
+//     }
+//     if (sum <= budget) {
+//       answer = right
+//       break;
+//     } else {
+//       right -= 1
+//       sum = 0
 //     }
 //   }
-//   let lcm = 0
-//   let bigNumArr = []
-//   let smallNumArr = []
-//   for (let i = 1; i <= bigNum; i += 1) {
-//     bigNumArr.push(bigNum * i)
-//     smallNumArr.push(smallNum * i)
-//   }
-//   for (let i = 0; i < bigNumArr.length; i += 1) {
-//     for (let j = 0; j < smallNumArr.length; j += 1) {
-//       if (bigNumArr[i] === smallNumArr[j]) {
-//         lcm = bigNumArr[i]
-//         break;
-//       }
-//     }
-//   }
-//   console.log(bigNumArr, smallNumArr)
-//   return answer = [gcd, lcm];
+//   return answer;
 // }
 
-// function solution(n, m) {
-//   let gcd = (n, m) => (n % m === 0 ? m : gcd(m, n % m))
-//   let lcm = (n, m) => (n * m) / gcd(n, m)
-//   return [gcd(n, m), lcm(n, m)]
+// console.log(solution([1, 3, 2, 5, 4], 9))
+// console.log(solution([2, 2, 3, 3], 10))
+
+// 시저 암호
+// function solution(s, n) {
+//   return s
+//     .split("")
+//     .map((el) => {
+//       if (el == " ") return el;
+//       let tmp = el.charCodeAt();
+//       return el.toLowerCase().charCodeAt() + n > 122
+//         ? String.fromCharCode(tmp + n - 26)
+//         : String.fromCharCode(tmp + n);
+//     })
+//     .join("");
 // }
 
-// console.log(solution(3, 12))
-// console.log(solution(2, 5))
+// console.log(solution('AB', 1))
+// console.log(solution('z', 1))
+// console.log(solution('a B z', 4))
 
-// 같은 숫자는 싫어
-// function solution(arr) {
-//   let stack = []
-//   for (let x of arr) {
-//     if (stack.length > 0 && stack[stack.length - 1] === x) {
-//       stack.pop()
-//       stack.push(x)
-//     } else stack.push(x)
-//   }
-//   return stack;
-// }
-
-// console.log(solution([1, 1, 3, 3, 0, 1, 1]))
-// console.log(solution([4, 4, 4, 3, 3]))
-
-// 이상한 문자 만들기
-function solution(s) {
-  var answer = '';
-  let cnt = 0
-  for (let i = 0; i < s.length; i += 1) {
-    if (s[i] === ' ') {
-      answer += s[i]
-      cnt = 0
-    } else if (cnt % 2 === 0) {
-      cnt += 1
-      answer += s[i].toUpperCase()
-    } else if (cnt % 2 !== 0) {
-      cnt += 1
-      answer += s[i].toLowerCase()
-    }
-  }
-  return answer;
+// 최소직사각형
+function solution(sizes) {
+  const maxWidth = Math.max(...sizes.map(card => Math.min(...card)));
+  const maxHeight = Math.max(...sizes.map(card => Math.max(...card)));
+  return maxWidth * maxHeight;
 }
 
-console.log(solution("try hello world"))
-console.log(solution("abcd efg hijk"))
-console.log(solution("  HEf efer sErgd  "))
+console.log(solution([[60, 50], [30, 70], [60, 30], [80, 40]]))
+console.log(solution([[10, 7], [12, 3], [8, 15], [14, 7], [5, 15]]))
+console.log(solution([[14, 4], [19, 6], [6, 16], [18, 7], [7, 11]]))
