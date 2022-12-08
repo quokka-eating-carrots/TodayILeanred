@@ -1,94 +1,86 @@
-// 직사각형 별 찍기
-// process.stdin.setEncoding("utf8");
-// process.stdin.on("data", (data) => {
-//   const n = data.split(" ");
-//   const a = Number(n[0]),
-//     b = Number(n[1]);
-//   console.log(("*".repeat(a) + `\n`).repeat(b));
-// });
-
-// 최대공약수와 최소공배수
-// function solution(n, m) {
+// [1차] 비밀지도
+// function solution(n, arr1, arr2) {
 //   var answer = [];
-//   let bigNum = 0
-//   let smallNum = 0
-//   if (n > m) {
-//     bigNum = n
-//     smallNum = m
-//   } else {
-//     bigNum = m
-//     smallNum = n
-//   }
-//   let gcd = 0
-//   for (let i = 1; i <= bigNum; i += 1) {
-//     if (bigNum % i === 0 && smallNum % i === 0) {
-//       if (gcd < i) {
-//         gcd = i
+//   let map1 = []
+//   let map2 = []
+//   let binaryNum = []
+//   for (let x of arr1) {
+//     binaryNum = x.toString(2).split('')
+//     if(binaryNum.length < n) {
+//       while(binaryNum.length < n) {
+//         binaryNum.unshift('0')
 //       }
-//     }
+//       map1.push(binaryNum)
+//     } else map1.push(binaryNum)
 //   }
-//   let lcm = 0
-//   let bigNumArr = []
-//   let smallNumArr = []
-//   for (let i = 1; i <= bigNum; i += 1) {
-//     bigNumArr.push(bigNum * i)
-//     smallNumArr.push(smallNum * i)
-//   }
-//   for (let i = 0; i < bigNumArr.length; i += 1) {
-//     for (let j = 0; j < smallNumArr.length; j += 1) {
-//       if (bigNumArr[i] === smallNumArr[j]) {
-//         lcm = bigNumArr[i]
-//         break;
+//   for (let x of arr2) {
+//     binaryNum = x.toString(2).split('')
+//     if(binaryNum.length < n) {
+//       while(binaryNum.length < n) {
+//         binaryNum.unshift('0')
 //       }
+//       map2.push(binaryNum)
+//     } else map2.push(binaryNum)
+//   }
+//   for (let i = 0; i < n; i += 1) {
+//     let resultMap = ''
+//     for (let j = 0; j < n; j += 1) {
+//       if (map1[i][j] === '1' || map2[i][j] === '1') {
+//         resultMap += '#'
+//       } else resultMap += ' '
 //     }
+//     answer.push(resultMap)
+//     resultMap = ''
 //   }
-//   console.log(bigNumArr, smallNumArr)
-//   return answer = [gcd, lcm];
+//   return answer;
 // }
 
-// function solution(n, m) {
-//   let gcd = (n, m) => (n % m === 0 ? m : gcd(m, n % m))
-//   let lcm = (n, m) => (n * m) / gcd(n, m)
-//   return [gcd(n, m), lcm(n, m)]
+// console.log(solution(5, [9, 20, 28, 18, 11], [30, 1, 21, 17, 28]))
+
+// 문자열 내 마음대로 정렬하기
+// function solution(strings, n) {
+//   var answer = [];
+//   strings.sort((a, b) => {
+//     if (a[n] > b[n]) {
+//       return 1
+//     } else if (a[n] < b[n]) {
+//       return -1
+//     } else if (a[n] === b[n]) {
+//       if (a[n + 1] > b[n + 1]) return 1
+//       else return -1
+//     }
+//   })
+//   answer = strings
+//   return answer;
 // }
 
-// console.log(solution(3, 12))
-// console.log(solution(2, 5))
+// console.log(solution(["sun", "bed", "car"], 1))
+// console.log(solution(["abce", "abcd", "cdx"], 2))
 
-// 같은 숫자는 싫어
-// function solution(arr) {
-//   let stack = []
-//   for (let x of arr) {
-//     if (stack.length > 0 && stack[stack.length - 1] === x) {
-//       stack.pop()
-//       stack.push(x)
-//     } else stack.push(x)
+// K번째 수
+// function solution(array, commands) {
+//   var answer = [];
+//   let sliceArr = []
+//   for (let x of commands) {
+//     sliceArr = array.slice(x[0] - 1, x[1]).sort((a, b) => a - b)
+//     answer.push(sliceArr[x[2] - 1])
 //   }
-//   return stack;
+//   return answer;
 // }
 
-// console.log(solution([1, 1, 3, 3, 0, 1, 1]))
-// console.log(solution([4, 4, 4, 3, 3]))
+// console.log(solution([1, 5, 2, 6, 3, 7, 4], [[2, 5, 3], [4, 4, 1], [1, 7, 3]]))
 
-// 이상한 문자 만들기
+// 숫자 문자열과 영단어
 function solution(s) {
-  var answer = '';
-  let cnt = 0
-  for (let i = 0; i < s.length; i += 1) {
-    if (s[i] === ' ') {
-      answer += s[i]
-      cnt = 0
-    } else if (cnt % 2 === 0) {
-      cnt += 1
-      answer += s[i].toUpperCase()
-    } else if (cnt % 2 !== 0) {
-      cnt += 1
-      answer += s[i].toLowerCase()
-    }
+  var answer = 0;
+  let num = [/zero/g, /one/g, /two/g, /three/g, /four/g, /five/g, /six/g, /seven/g, /eight/g, /nine/g]
+  for(let i = 0; i <= 9; i += 1) {
+    s = s.replace(num[i], i)
   }
-  return answer;
+  return Number(s);
 }
 
-console.log(solution("try hello world"))
-console.log(solution("abcd efg hijk"))
-console.log(solution("  HEf efer sErgd  "))
+console.log(solution("one4seveneight"))
+console.log(solution("23four5six7"))
+console.log(solution("2three45sixseven"))
+console.log(solution("123"))
