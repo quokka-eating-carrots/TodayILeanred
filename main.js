@@ -1,72 +1,101 @@
-// 소수 찾기
-// function solution(n) {
+// 소수 만들기
+// function solution(nums) {
+//   let answer = 0
+//   let sum = []
+//   for (let i = 0; i < nums.length; i += 1) {
+//     for (let j = 0; j < nums.length; j += 1) {
+//       for (let k = 0; k < nums.length; k += 1) {
+//         if (i !== j && j !== k && i !== k) {
+//           sum.push(nums[i] + nums[j] + nums[k])
+//         }
+//       }
+//     }
+//   }
+//   sum = [...new Set(sum)]
+//   const max = Math.max(...sum)
+//   let arr = Array(max + 1).fill(0)
+//   for (let i = 0; i <= max; i += 1) {
+//     arr[i] = i
+//   }
+//   arr[1] = 0
+//   for (let i = 2; i <= max; i += 1) {
+//     if (arr[i] === 0) continue;
+//     for (let j = i * 2; j <= max; j += i) {
+//       arr[j] = 0
+//     }
+//   }
+//   let isPrime = []
+//   for (let i = 0; i < arr.length; i += 1) {
+//     if (arr[i] !== 0) {
+//       isPrime.push(i)
+//     }
+//   }
+//   for (let i = 0; i < sum.length; i += 1) {
+//     for (let j = 0; j < isPrime.length; j += 1) {
+//       if (sum[i] === isPrime[j]) answer += 1
+//     }
+//   }
+//   return answer
+// }
+
+// let sieve = new Array(3001).fill(true);
+// for (let i = 2; i * i < sieve.length; i += 1) {
+//   if (!sieve[i]) continue;
+//   for (let j = i + i; j < sieve.length; j += i) {
+//     sieve[j] = false;
+//   }
+// }
+// function solution(nums) {
 //   var answer = 0;
-//   for (let i = 2; i <= n; i += 1) {
-//     for (let j = 2; j <= Math.sqrt(i); j += 1) {
-//       if (i % j === 0) {
-//         break;
+//   for (let i = 0; i < nums.length; i += 1) {
+//     for (let j = i + 1; j < nums.length; j += 1) {
+//       for (let k = j + 1; k < nums.length; k += 1) {
+//         const index = nums[i] + nums[j] + nums[k];
+//         if (sieve[index]) {
+//           answer += 1;
+//         }
 //       }
 //     }
 //   }
 //   return answer;
 // }
 
-function solution(n) {
-  let answer = 0
-  let arr = Array(n + 1).fill(0)
-  for (let i = 0; i <= n; i += 1) {
-    arr[i] = i
-  }
-  arr[1] = 0
-  for (let i = 2; i <= n; i += 1) {
-    if (arr[i] === 0) continue;
-    for (let j = i * 2; j <= n; j += i) {
-      arr[j] = 0
-    }
-  }
-  for (let i = 0; i < arr.length; i += 1) {
-    if (arr[i] !== 0) {
-      answer += 1
-    }
-  }
-  return answer
-}
+// console.log(solution([1, 2, 3, 4]))
+// console.log(solution([1, 2, 7, 6, 4]))
 
-console.log(solution(10))
-console.log(solution(5))
-
-// 모의고사
-// function solution(answers) {
+// 실패율
+// function solution(N, stages) {
 //   var answer = [];
-//   const per1 = [1, 2, 3, 4, 5]
-//   const per2 = [2, 1, 2, 3, 2, 4, 2, 5]
-//   const per3 = [3, 3, 1, 1, 2, 2, 4, 4, 5, 5]
-//   let per1Score = 0
-//   let per2Score = 0
-//   let per3Score = 0
-//   for (let i = 0; i < answers.length; i += 1) {
-//     if (answers[i] === per1[i % per1.length]) {
-//       per1Score += 1
-//     }
-//     if (answers[i] === per2[i % per2.length]) {
-//       per2Score += 1
-//     }
-//     if (answers[i] === per3[i % per3.length]) {
-//       per3Score += 1
-//     }
+//   let arr = Array(N).fill(0)
+//   for (let i = 1; i <= N; i += 1) {
+//     arr[i - 1] = [i, 0]
 //   }
-//   const max = Math.max(per1Score, per2Score, per3Score)
-//   if (per1Score === max) {
-//     answer.push(1)
+//   let cnt = 0
+//   for (let x of stages) {
+//     if (x > arr.length) {
+//       arr[arr.length - 1][1] += 1
+//     } else arr[x - 1][1] += 1
 //   }
-//   if (per2Score === max) {
-//     answer.push(2)
-//   }
-//   if (per3Score === max) {
-//     answer.push(3)
+//   arr.sort((a, b) => {
+//     if (a[1] === b[1]) {
+//       return b[0] - a[0]
+//     } else return b[1] - a[1]
+//   })
+//   for (let [k, v] of arr) {
+//     answer.push(k)
 //   }
 //   return answer;
 // }
-
-// console.log(solution([1, 2, 3, 4, 5]))
-// console.log(solution([1, 3, 2, 4, 2]))
+function solution(N, stages) {
+  let stageNFailRate = [];
+  for (let stage = 1; stage <= N; stage++) {
+    const playerReached = stages.filter((player) => player >= stage).length;
+    const playerChallenging = stages.filter(
+      (player) => player === stage
+    ).length;
+    stageNFailRate.push([stage, playerChallenging / playerReached]);
+  }
+  stageNFailRate.sort((a, b) => b[1] - a[1]);
+  return stageNFailRate.map((stage) => stage[0]);
+}
+console.log(solution(5, [2, 1, 2, 6, 2, 4, 3, 3]))
