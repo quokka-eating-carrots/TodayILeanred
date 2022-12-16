@@ -1,43 +1,48 @@
-// 푸드 파이트 대회
-// function solution(food) {
+// 완주하지 못한 선수
+// function solution(participant, completion) {
 //   var answer = '';
-//   let cnt = []
-//   for (let i = 1; i < food.length; i += 1) {
-//     cnt.push(Math.floor(food[i] / 2))
+//   let map = new Map()
+//   for (let x of participant) {
+//     map.set(x, (map.get(x) || 0) + 1)
 //   }
-//   for (let i = 0; i < cnt.length; i += 1) {
-//     for (let j = 1; j <= cnt[i]; j += 1) {
-//       answer += i + 1
+//   for (let x of completion) {
+//     for (let [key, value] of map) {
+//       if (x === key) {
+//         map.set(x, (map.get(x) || 0) - 1)
+//       }
 //     }
 //   }
-//   answer = answer + '0' + answer.split('').reverse().join('')
+//   for (let [k, v] of map) {
+//     if (v === 1) {
+//       answer = k
+//     }
+//   }
 //   return answer;
 // }
 
-// console.log(solution([1, 3, 4, 6]))
-// console.log(solution([1, 7, 1, 2]))
+// function solution(participant, completion) {
+//   let answer = ''
+//   for (let i = 0; i < participant.length; i += 1) {
+//     for (let j = 0; j < completion.length; j += 1) {
+//       if (participant[i] === completion[j]) {
+//         participant.splice(i, 1)
+//         completion.splice(j, 1)
+//         i -= 1
+//         j -= 1
+//       }
+//     }
+//   }
+//   return participant[0]
+// }
 
-// 체육복
-function solution(n, lost, reserve) {
-  let students = Array.from({ length: n }).fill(1)
-  lost.forEach((target) => [
-    students[target - 1] -= 1
-  ])
-  reserve.forEach((target) => {
-    students[target - 1] += 1
-  })
-  for (let i = 0; i < students.length; i += 1) {
-    if (students[i] === 0 || students[i] === 1) continue;
-    if (i !== 0 && students[i - 1] === 0) {
-      students[i - 1] += 1
-      students[i] -= 1
-    }
-    if (students[i] > 1 && i + 1 !== students.length && students[i + 1] === 0) {
-      students[i + 1] += 1
-      students[i] -= 1
-    }
+function solution(participant, completion) {
+  participant = participant.sort();
+  completion = completion.sort();
+  for (let i = 0; i < completion.length; i++) {
+    if (participant[i] !== completion[i]) return participant[i];
   }
-  return students.filter(v => v >= 1).length
+  return participant[participant.length - 1];
 }
-
-console.log(solution(5, [2, 4], [1, 3, 5]))
+console.log(solution(["leo", "kiki", "eden"], ["eden", "kiki"]))
+console.log(solution(["marina", "josipa", "nikola", "vinko", "filipa"], ["josipa", "filipa", "marina", "nikola"]))
+console.log(solution(["mislav", "stanko", "mislav", "ana"], ["stanko", "ana", "mislav"]))
