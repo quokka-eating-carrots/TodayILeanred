@@ -1,48 +1,51 @@
-// 완주하지 못한 선수
-// function solution(participant, completion) {
-//   var answer = '';
-//   let map = new Map()
-//   for (let x of participant) {
-//     map.set(x, (map.get(x) || 0) + 1)
-//   }
-//   for (let x of completion) {
-//     for (let [key, value] of map) {
-//       if (x === key) {
-//         map.set(x, (map.get(x) || 0) - 1)
+// [카카오 인턴] 키패드 누르기
+// function solution(numbers, hand) {
+//   let answer = '';
+//   let cnt = ''
+//   for (let x of numbers) {
+//     if (x === 1 || x === 4 || x === 7) {
+//       answer += 'L'
+//       cnt = 'L'
+//     } else if (x === 3 || x === 6 || x === 9) {
+//       answer += 'R'
+//       cnt = 'R'
+//     } else if (x === 2 || x === 5 || x === 8 || x === 0) {
+//       if (cnt === 'L') {
+
 //       }
-//     }
-//   }
-//   for (let [k, v] of map) {
-//     if (v === 1) {
-//       answer = k
 //     }
 //   }
 //   return answer;
 // }
 
-// function solution(participant, completion) {
-//   let answer = ''
-//   for (let i = 0; i < participant.length; i += 1) {
-//     for (let j = 0; j < completion.length; j += 1) {
-//       if (participant[i] === completion[j]) {
-//         participant.splice(i, 1)
-//         completion.splice(j, 1)
-//         i -= 1
-//         j -= 1
-//       }
-//     }
-//   }
-//   return participant[0]
-// }
+function solution(numbers, hand) {
+  let answer = ''
+  let [leftRow, leftCol] = [3, 0]
+  let [rightRow, rightCol] = [3, 2]
 
-function solution(participant, completion) {
-  participant = participant.sort();
-  completion = completion.sort();
-  for (let i = 0; i < completion.length; i++) {
-    if (participant[i] !== completion[i]) return participant[i];
+  for (let x of numbers) {
+    if (x === 1 || x === 4 || x === 7) {
+      [leftRow, leftCol] = [Math.floor((x - 1) / 3), 0]
+      answer += 'L'
+    } else if (x === 3 || x === 6 || x === 9) {
+      [rightRow, rightCol] = [Math.floor((x - 1) / 3), 2]
+      answer += 'R'
+    } else {
+      if (x === 0) x = 11
+      let [nextRow, nextCol] = [Math.floor((x - 1) / 3), 1]
+      let leftDistance = Math.abs(leftRow - nextRow) + Math.abs(leftCol - nextCol)
+      let rightDistance = Math.abs(rightRow - nextRow) + Math.abs(rightCol - nextCol)
+      if (leftDistance < rightDistance || (leftDistance === rightDistance && hand === 'left')) {
+        [leftRow, leftCol] = [nextRow, nextCol]
+        answer += 'L'
+      } else {
+        [rightRow, rightCol] = [nextRow, nextCol]
+        answer += 'R'
+      }
+    }
   }
-  return participant[participant.length - 1];
+  return answer
 }
-console.log(solution(["leo", "kiki", "eden"], ["eden", "kiki"]))
-console.log(solution(["marina", "josipa", "nikola", "vinko", "filipa"], ["josipa", "filipa", "marina", "nikola"]))
-console.log(solution(["mislav", "stanko", "mislav", "ana"], ["stanko", "ana", "mislav"]))
+
+console.log(solution([1, 3, 4, 5, 8, 2, 1, 4, 5, 9, 5], 'right'))
+console.log(solution([7, 0, 8, 2, 8, 3, 1, 5, 7, 6, 2], 'left'))
