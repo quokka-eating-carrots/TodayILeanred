@@ -1,51 +1,29 @@
-// [카카오 인턴] 키패드 누르기
-// function solution(numbers, hand) {
-//   let answer = '';
-//   let cnt = ''
-//   for (let x of numbers) {
-//     if (x === 1 || x === 4 || x === 7) {
-//       answer += 'L'
-//       cnt = 'L'
-//     } else if (x === 3 || x === 6 || x === 9) {
-//       answer += 'R'
-//       cnt = 'R'
-//     } else if (x === 2 || x === 5 || x === 8 || x === 0) {
-//       if (cnt === 'L') {
+// 과일 장수
 
-//       }
-//     }
+// 해당 풀이는 런타임 아웃 남
+// function solution(k, m, score) {
+//   var answer = 0;
+//   score.sort((a, b) => b - a)
+//   const fruits = []
+//   while(score.length > 0) {
+//     fruits.push(score.splice(0, m))
 //   }
+//   fruits.forEach(fruit => {
+//     if (fruit.length === m) {
+//       answer += Math.min(...fruit) * m
+//     }
+//   })
 //   return answer;
 // }
 
-function solution(numbers, hand) {
-  let answer = ''
-  let [leftRow, leftCol] = [3, 0]
-  let [rightRow, rightCol] = [3, 2]
-
-  for (let x of numbers) {
-    if (x === 1 || x === 4 || x === 7) {
-      [leftRow, leftCol] = [Math.floor((x - 1) / 3), 0]
-      answer += 'L'
-    } else if (x === 3 || x === 6 || x === 9) {
-      [rightRow, rightCol] = [Math.floor((x - 1) / 3), 2]
-      answer += 'R'
-    } else {
-      if (x === 0) x = 11
-      let [nextRow, nextCol] = [Math.floor((x - 1) / 3), 1]
-      let leftDistance = Math.abs(leftRow - nextRow) + Math.abs(leftCol - nextCol)
-      let rightDistance = Math.abs(rightRow - nextRow) + Math.abs(rightCol - nextCol)
-      if (leftDistance < rightDistance || (leftDistance === rightDistance && hand === 'left')) {
-        [leftRow, leftCol] = [nextRow, nextCol]
-        answer += 'L'
-      } else {
-        [rightRow, rightCol] = [nextRow, nextCol]
-        answer += 'R'
-      }
-    }
+function solution(k, m, score) {
+  let answer = 0
+  score.sort((a, b) => b - a)
+  for (let i = m - 1; i < score.length; i += m) {
+    answer += score[i] * m
   }
   return answer
 }
 
-console.log(solution([1, 3, 4, 5, 8, 2, 1, 4, 5, 9, 5], 'right'))
-console.log(solution([7, 0, 8, 2, 8, 3, 1, 5, 7, 6, 2], 'left'))
+console.log(solution(3, 4, [1, 2, 3, 1, 2, 3, 1]))
+console.log(solution(4, 3, [4, 1, 2, 2, 4, 4, 4, 4, 1, 2, 4, 2]))
