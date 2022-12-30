@@ -1,69 +1,58 @@
-// 명예의 전당
-// function solution(k, score) {
-//   let answer = [];
-//   answer.push(score[0])
-//   for (let i = 1; i < k; i += 1) {
-//     let min = Math.min(...answer)
-//     if (min > score[i] && score[i] >= 10) {
-//       answer.push(score[i])
-//     } else answer.push(min)
-//   }
-
-//   for (let i = k; i < score.length; i += 1) {
-//     let min = []
-//     for (let j = 0; j > -k; j -= 1) {
-//       min.push(score[i + j])
+// 신규 아이디 추천
+// function solution(new_id) {
+//   let answer = '';
+//   new_id = new_id.toLowerCase()
+//   new_id = new_id.match(/\w|[-\.]/g, '').join('')
+//   new_id = new_id.replace(/\.{2,}/g, '.')
+//   function dotRemove() {
+//     if (new_id[0] === '.') {
+//       new_id = new_id.split('')
+//       new_id.shift()
+//       new_id = new_id.join('')
+//     } else if (new_id.at(-1) === '.') {
+//       new_id = new_id.split('')
+//       new_id.pop()
+//       new_id = new_id.join('')
 //     }
-//     min.sort((a, b) => a - b)
-//     if (min[0] < 10) {
-//       answer.push(min[1])
-//     } else answer.push(min[0])
+//   }
+//   dotRemove()
+//   if (new_id.length === 0) {
+//     new_id = "a"
+//   }
+//   if (new_id.length >= 16) {
+//     new_id = new_id.slice(0, 15)
+//     dotRemove()
+//   }
+//   if (new_id.length <= 2) {
+//     answer += new_id
+//     while (answer.length < 3) {
+//       answer += new_id.at(-1)
+//     }
+//   } else {
+//     answer = new_id
 //   }
 //   return answer;
 // }
 
-// console.log(solution(3, [10, 100, 20, 150, 1, 100, 200]))
-console.log(solution(4, [0, 300, 40, 300, 20, 70, 150, 50, 500, 1000]))
+console.log(solution("...!@BaT#*..y.abcdefghijklm"))
+console.log(solution("z-+.^."))
+console.log(solution("=.="))
+console.log(solution("123_.def"))
+console.log(solution("abcdefghijklmn.p"))
+console.log(solution("a.$.a"))
+console.log(solution(".................."))
 
-// function solution(k, score) {
-//   let answer = [];
-//   answer.push(score[0])
-//   for (let i = 1; i < k; i += 1) {
-//     let min = Math.min(...answer)
-//     if (min > score[i] && score[i] >= 10) {
-//       answer.push(score[i])
-//     } else answer.push(min)
-//   }
+function solution(new_id) {
+  let answer = ''
+  answer = new_id
+    .toLowerCase()
+    .replace(/[^\w-\.]/g, '')
+    .replace(/\.{2,}/g, '.')
+    .replace(/^\.{1,}|\.{1,}$/, '')
+    .replace(/^$/, 'a')
+    .slice(0, 15)
+    .replace(/^\.{1,}|\.{1,}$/, '')
 
-//   for (let i = k; i < score.length; i += 1) {
-//     let min = []
-//     for (let j = 0; j > -k; j -= 1) {
-//       min.push(score[i + j])
-//     }
-//     min.sort((a, b) => a - b)
-//     console.log(min)
-//     if (min[0] < 10 || answer.includes(min[0])) {
-//       answer.push(min[1])
-//     } else if (min[0] < answer[answer.length - 1]) {
-//       answer.push(answer[answer.length - 1])
-//     } else answer.push(min[0])
-//   }
-//   return answer;
-// }
-
-function solution(k, score) {
-  const answer = []
-  const honor = []
-  for (let i = 0; i < score.length; i += 1) {
-    if (i < k) {
-      honor.push(score[i])
-    }
-    if (score[i] > Math.min(...honor)) {
-      honor.pop()
-      honor.push(score[i])
-      honor.sort((a, b) => b - a)
-    }
-    answer.push(honor.at(-1))
-  }
+  answer = answer.padEnd(3, answer[answer.length - 1])
   return answer
 }

@@ -1,4 +1,4 @@
 # TodayILeanred
-221229 [Lv. 1 명예의 전당](https://school.programmers.co.kr/learn/courses/30/lessons/138477)
+221229 [Lv. 1 신규 아이디 추](https://school.programmers.co.kr/learn/courses/30/lessons/72410)
 
-[풀이 참고 사이트](https://velog.io/@kwb020312/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4-%EB%AA%85%EC%98%88%EC%9D%98-%EC%A0%84%EB%8B%B9-1)
+[풀이 참고 사이트](https://github.com/codeisneverodd/programmers-coding-test/blob/main/level-1/%EC%8B%A0%EA%B7%9C-%EC%95%84%EC%9D%B4%EB%94%94-%EC%B6%94%EC%B2%9C%2672410%26.js)
