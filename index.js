@@ -1,58 +1,35 @@
-// 신규 아이디 추천
-// function solution(new_id) {
-//   let answer = '';
-//   new_id = new_id.toLowerCase()
-//   new_id = new_id.match(/\w|[-\.]/g, '').join('')
-//   new_id = new_id.replace(/\.{2,}/g, '.')
-//   function dotRemove() {
-//     if (new_id[0] === '.') {
-//       new_id = new_id.split('')
-//       new_id.shift()
-//       new_id = new_id.join('')
-//     } else if (new_id.at(-1) === '.') {
-//       new_id = new_id.split('')
-//       new_id.pop()
-//       new_id = new_id.join('')
+// 옹알이 (2)
+// function solution(babbling) {
+//   var answer = 0;
+//   for (let x of babbling) {
+//     if (x.replace("ye", " ").replace("aya", " ").replace("woo", " ").replace("ma", " ").trim() === "") {
+//       answer += 1
 //     }
-//   }
-//   dotRemove()
-//   if (new_id.length === 0) {
-//     new_id = "a"
-//   }
-//   if (new_id.length >= 16) {
-//     new_id = new_id.slice(0, 15)
-//     dotRemove()
-//   }
-//   if (new_id.length <= 2) {
-//     answer += new_id
-//     while (answer.length < 3) {
-//       answer += new_id.at(-1)
-//     }
-//   } else {
-//     answer = new_id
 //   }
 //   return answer;
 // }
 
-console.log(solution("...!@BaT#*..y.abcdefghijklm"))
-console.log(solution("z-+.^."))
-console.log(solution("=.="))
-console.log(solution("123_.def"))
-console.log(solution("abcdefghijklmn.p"))
-console.log(solution("a.$.a"))
-console.log(solution(".................."))
+function solution(babbling) {
+  // (그룹) + 그룹과 동일한 단어
+  // 2개의 동일한 단어를 연속적으로 사용해야만 매치된다.
+  // \1은 정규식의 그룹 중 첫 번째 그룹을 가리킨다.
+  // 연속적인 발음을 할 수 없으니까 연속적으로 발음이 나타나는 것을 걸러 주게 된다.
+  const r1 = /(aya|ye|woo|ma)\1/
+  // 그룹으로 시작하고, 하나 이상 일치하며 그룹으로 끝나야 한다.
+  const r2 = /^(aya|ye|woo|ma)+$/
+  let answer = 0
+  for (let x of babbling) {
+    const m = r1.exec(x)
+    if (m) continue
 
-function solution(new_id) {
-  let answer = ''
-  answer = new_id
-    .toLowerCase()
-    .replace(/[^\w-\.]/g, '')
-    .replace(/\.{2,}/g, '.')
-    .replace(/^\.{1,}|\.{1,}$/, '')
-    .replace(/^$/, 'a')
-    .slice(0, 15)
-    .replace(/^\.{1,}|\.{1,}$/, '')
+    const m2 = r2.exec(x)
+    if (!m2) continue
 
-  answer = answer.padEnd(3, answer[answer.length - 1])
+    answer += 1
+  }
   return answer
 }
+
+// console.log(solution(["aya", "yee", "u", "maa"]))
+console.log(solution(["ayaye", "uuu", "yeye", "yemawoo", "ayaayaa"]))
+// console.log(solution(["maayama", "mama"]))
