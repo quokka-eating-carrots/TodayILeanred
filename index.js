@@ -53,3 +53,35 @@ function solution(survey, choices) {
 
 console.log(solution(["AN", "CF", "MJ", "RT", "NA"], [5, 3, 2, 7, 5]))
 console.log(solution(["TR", "RT", "TR"], [7, 1, 3]))
+
+// 딥다이브 클래스의 상속 예제
+class Name {
+  constructor(middle, last) {
+    this.middle = middle
+    this.last = last
+  }
+
+  getName() {
+    return `${this.middle}${this.last}`
+  }
+
+  info() {
+    return `저의 이름은 ${this.middle}${this.last}입니다.`
+  }
+}
+
+class FullName extends Name {
+  constructor(first, middle, last) {
+    super(middle, last)
+    this.first = first
+  }
+
+  info() {
+    return super.info() + ` 저의 성은 ${this.first}입니다.`
+  }
+}
+
+const fullName = new FullName('김', '쿼', '카')
+console.log(fullName)
+console.log(fullName.getName())
+console.log(fullName.info())
