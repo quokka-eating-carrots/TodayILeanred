@@ -1,87 +1,84 @@
-// 성격 유형 검사하기
+// // 개인정보 수집 유효기간
+// // function solution(today, terms, privacies) {
+// //   var answer = [];
+// //   const arrToday = Number(today.split(".").join(""))
+// //   let objTerms = {}
+// //   for (let x of terms) {
+// //     x = x.split(" ")
+// //     objTerms[x[0]] = +x[1]
+// //   }
+// //   for (let x of privacies) {
+// //     let originX = x
+// //     x = x.split(" ")
+// //     x[0] = x[0].split(".")
+// //     const expire = +x[0][1] + objTerms[x[1]]
+// //     if (expire > 12) {
+// //       x[0][0] = +x[0][0] + Math.floor(expire / 12)
+// //       x[0][1] = `0${(+x[0][1] - (expire % 12)) + +x[0][1]}`
+// //       if (+x[0][2] - 1 < 1) {
+// //         x[0][2] = 28
+// //         x[0][1] = `0${+x[0][1] - 1}`
+// //       }
+// //     } else {
+// //       x[0][0] = +x[0][0]
+// //       x[0][1] = `0${expire}`
+// //       x[0][2] = +x[0][2] - 1
+// //     }
+// //     x[0] = Number(x[0].join(""))
+// //     console.log(x)
+// //     if (arrToday > x[0]) {
+// //       answer.push(privacies.indexOf(originX) + 1)
+// //     }
+// //   }
+// //   answer.sort((a, b) => a - b)
+// //   return answer;
+// // }
 
-function solution(survey, choices) {
-  let answer = '';
-  let result = {
-    R: 0,
-    T: 0,
-    C: 0,
-    F: 0,
-    J: 0,
-    M: 0,
-    A: 0,
-    N: 0
-  }
-  for (let i = 0; i < survey.length; i += 1) {
-    if (choices[i] === 1) {
-      result[survey[i][0]] += 3
-    } else if (choices[i] === 2) {
-      result[survey[i][0]] += 2
-    } else if (choices[i] === 3) {
-      result[survey[i][0]] += 1
-    } else if (choices[i] === 5) {
-      result[survey[i][1]] += 1
-    } else if (choices[i] === 6) {
-      result[survey[i][1]] += 2
-    } else if (choices[i] === 7) {
-      result[survey[i][1]] += 3
-    }
-  }
+// // console.log(solution("2022.05.19", ["A 6", "B 12", "C 3"], ["2021.05.02 A", "2021.07.01 B", "2022.02.19 C", "2022.02.20 C"]))
+// console.log(solution("2020.01.01", ["Z 3", "D 5"], ["2019.01.01 D", "2019.11.15 Z", "2019.08.02 D", "2019.07.01 D", "2018.12.28 Z"]))
 
-  if (result.R > result.T || result.R === result.T) {
-    answer += "R"
-  } else if (result.R < result.T) {
-    answer += "T"
+// function solution(today, terms, privacies) {
+//   var answer = [];
+//   const arrToday = Number(today.split(".").join(""))
+//   let objTerms = {}
+//   for (let x of terms) {
+//     x = x.split(" ")
+//     objTerms[x[0]] = +x[1]
+//   }
+//   for (let x of privacies) {
+//     const originX = x
+//     x = x.split(" ")
+//     x[0] = x[0].split(".")
+//     x[0][1] = +x[0][1] + objTerms[x[1]]
+//     if (x[0][1] > 12) {
+//       x[0][0] = `${+x[0][0] + Math.floor(x[0][1] / 12)}`
+//       x[0][1] = `0${x[0][1] - 12}`
+//       x[0][2] = `${+x[0][2] - 1}`
+//     } else if (x[0][1] < 10) {
+//       x[0][1] = `0${x[0][1]}`
+//       x[0][2] = `${+x[0][2] - 1}`
+//     }
+//     if (+[0][2] < 1) {
+//       x[0][1] = `${+[0][1] - 1}`
+//     }
+//     // x[0] = Number(x[0].join(""))
+//     console.log(x[0])
+//   }
+//   return answer;
+// }
+
+// 최댓값 최솟값
+function solution(s) {
+  var answer = '';
+  s = s.split(" ")
+  for (let i = 0; i < s.length; i += 1) {
+    s[i] = +s[i]
   }
-  if (result.C > result.F || result.C === result.F) {
-    answer += "C"
-  } else if (result.C < result.F) {
-    answer += "F"
-  }
-  if (result.J > result.M || result.J === result.M) {
-    answer += "J"
-  } else if (result.J < result.M) {
-    answer += "M"
-  }
-  if (result.A > result.N || result.A === result.N) {
-    answer += "A"
-  } else if (result.A < result.N) {
-    answer += "N"
-  }
+  answer += Math.min(...s)
+  answer += ` ${Math.max(...s)}`
   return answer;
 }
 
-console.log(solution(["AN", "CF", "MJ", "RT", "NA"], [5, 3, 2, 7, 5]))
-console.log(solution(["TR", "RT", "TR"], [7, 1, 3]))
-
-// 딥다이브 클래스의 상속 예제
-class Name {
-  constructor(middle, last) {
-    this.middle = middle
-    this.last = last
-  }
-
-  getName() {
-    return `${this.middle}${this.last}`
-  }
-
-  info() {
-    return `저의 이름은 ${this.middle}${this.last}입니다.`
-  }
-}
-
-class FullName extends Name {
-  constructor(first, middle, last) {
-    super(middle, last)
-    this.first = first
-  }
-
-  info() {
-    return super.info() + ` 저의 성은 ${this.first}입니다.`
-  }
-}
-
-const fullName = new FullName('김', '쿼', '카')
-console.log(fullName)
-console.log(fullName.getName())
-console.log(fullName.info())
+console.log(solution("1 2 3 4"))
+console.log(solution("-1 -2 -3 -4"))
+console.log(solution("-1 -1"))
