@@ -1,0 +1,13 @@
+var fs = require("fs");
+const filePath = process.platform === "linux" ? "/dev/stdin" : "test.txt";
+let input = fs.readFileSync(filePath).toString().trim().split("\n");
+const length = parseInt(input[0]);
+const score = input[1].split(" ").map((x) => Number(x));
+const max = Math.max(...score);
+let sum = 0;
+score.forEach((x) => (sum += x));
+const newScore = [];
+score.forEach((x) => newScore.push((x / max) * 100));
+sum = 0;
+newScore.forEach((x) => (sum += x));
+console.log(sum / length);
