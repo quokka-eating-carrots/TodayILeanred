@@ -1,16 +1,12 @@
 function solution(str_list) {
-  var answer = [];
+  let answer = [];
   for (let i = 0; i < str_list.length; i += 1) {
-    if (str_list[i] === "l") {
-      for (let j = 0; j < i; j += 1) {
-        answer.push(str_list[j]);
-      }
-      return answer;
-    } else if (str_list[i] === "r") {
-      for (let j = i + 1; j < str_list.length; j += 1) {
-        answer.push(str_list[j]);
-      }
-      return answer;
+    if (str_list[i] === "r") {
+      answer.push(...str_list.slice(i + 1, str_list.length));
+      break;
+    } else if (str_list[i] === "l") {
+      answer.push(...str_list.slice(0, i));
+      break;
     }
   }
   return answer;
